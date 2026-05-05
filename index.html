@@ -1428,28 +1428,82 @@ section{overflow:hidden}
     font-size:.88rem;color:rgba(255,255,255,.6);
     line-height:1.55;margin-bottom:1.75rem;
   }
-  #gate-form{display:flex;flex-direction:column;gap:.75rem}
-  #gate-input{
-    width:100%;padding:.95rem 1rem;
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:8px;
-    color:#fff;font-size:.95rem;font-family:'Inter',sans-serif;
-    transition:border-color .2s,background .2s;
+  #gate-form{display:flex;flex-direction:column;gap:.85rem;align-items:center}
+
+  /* ---- Password input: toggle eye/lock (dribbble shot 4298963) ---- */
+  .password{
+    width:100%;max-width:320px;height:64px;
+    background:#0d0c0b;border-radius:12px;
+    position:relative;overflow:hidden;
+    box-shadow:0 0 12px 0 rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.08);
+    transition:box-shadow .25s;
   }
-  #gate-input:focus{outline:none;border-color:var(--orange);background:rgba(217,119,87,.08)}
-  #gate-input::placeholder{color:rgba(255,255,255,.35)}
+  .password:focus-within{box-shadow:0 0 0 2px rgba(217,119,87,.35),inset 0 0 0 1px rgba(217,119,87,.45)}
+  .password--background{
+    background:var(--orange);
+    position:absolute;width:150%;height:100%;right:-50%;top:0;
+    transition:.22s all ease-in-out;border-radius:5px;
+    z-index:0;
+  }
+  .password--visibleToggle{
+    position:absolute;width:44px;height:44px;
+    right:10px;top:10px;z-index:3;
+    appearance:none;-webkit-appearance:none;outline:none;border:none;
+    margin:0;padding:0;background:transparent;cursor:pointer;
+  }
+  .password--visibleToggle-eye{
+    width:22px;height:22px;
+    position:absolute;right:21px;top:21px;
+    perspective:1000px;overflow:hidden;
+    z-index:2;pointer-events:none;
+  }
+  .password--visibleToggle-eye.close{transition:.4s all ease-in-out}
+  .password--visibleToggle-eye.open{transition:.2s .2s all ease-out}
+  .password--visibleToggle-eye img{width:100%;display:block;filter:brightness(0) invert(1)}
+  .password--lock{
+    width:18px;height:18px;fill:#fff;
+    transition:all .5s;
+    position:absolute;top:50%;transform:translateY(-50%);
+    left:22px;z-index:2;
+  }
+  .password--input{
+    background:none;border:none;
+    color:#fff;
+    position:absolute;width:calc(100% - 120px);
+    left:54px;top:50%;transform:translateY(-50%);
+    font-size:1rem;letter-spacing:2px;
+    transition:all .5s;outline:none;
+    font-family:'Inter',sans-serif;font-weight:500;
+    -webkit-text-security:none;z-index:1;
+    padding:0;margin:0;
+  }
+  .password--input::placeholder{color:rgba(255,255,255,.35);letter-spacing:1px;font-weight:400}
+  .password--input::selection{background:rgba(217,119,87,.4)}
+
+  /* Estado: visibleToggle marcado = senha mascarada (bolinhas) */
+  .password--visibleToggle:checked ~ .password--background{
+    width:44px;height:44px;border-radius:50%;
+    right:10px;top:10px;
+  }
+  .password--visibleToggle:checked ~ .password--input{-webkit-text-security:circle}
+  .password--visibleToggle:checked ~ .password--lock{fill:#fff}
+  .password--visibleToggle:not(:checked) ~ .password--lock{fill:rgba(255,255,255,.3)}
+  .password--visibleToggle:checked ~ .password--visibleToggle-eye.close{transform:rotateX(180deg)}
+  .password--visibleToggle:checked ~ .password--visibleToggle-eye.open{opacity:0}
+
   #gate-submit{
+    width:100%;max-width:320px;
     background:var(--orange);color:#fff;border:none;
-    padding:.95rem 1.5rem;border-radius:8px;
+    padding:.95rem 1.5rem;border-radius:10px;min-height:48px;
     font-size:.95rem;font-weight:600;cursor:pointer;
-    transition:background .2s,transform .2s;letter-spacing:.02em;
+    transition:background .2s,transform .2s,box-shadow .2s;letter-spacing:.02em;
+    box-shadow:0 4px 14px rgba(217,119,87,.25);
   }
-  #gate-submit:hover{background:var(--orange-dark);transform:translateY(-1px)}
+  #gate-submit:hover{background:var(--orange-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(217,119,87,.35)}
   #gate-error{
     font-size:.82rem;color:#ff8a7a;
-    margin-top:.5rem;min-height:1.2em;line-height:1.4;
-    opacity:0;transition:opacity .2s;
+    margin-top:.25rem;min-height:1.2em;line-height:1.4;
+    opacity:0;transition:opacity .2s;text-align:center;
   }
   #gate-error.show{opacity:1}
   #gate-foot{
@@ -1468,7 +1522,20 @@ section{overflow:hidden}
     <h1 id="gate-title">Apresentação protegida</h1>
     <p>Esta proposta é restrita. Insira a senha para acessar.</p>
     <form id="gate-form" autocomplete="off">
-      <input id="gate-input" type="password" placeholder="Digite a senha" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" required/>
+      <div class="password">
+        <input type="checkbox" class="password--visibleToggle" id="pwToggle" checked aria-label="Alternar visibilidade da senha"/>
+        <div class="password--background"></div>
+        <div class="password--visibleToggle-eye open">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/138980/eye-open.png" alt=""/>
+        </div>
+        <div class="password--visibleToggle-eye close">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/138980/eye-close.png" alt=""/>
+        </div>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.221 30.221" class="password--lock" aria-hidden="true">
+          <path d="M25.534,14.457h-1.529V9.361c0-2.541-0.965-4.871-2.555-6.572C19.864,1.09,17.602-0.006,15.11,0 c-2.494-0.006-4.756,1.09-6.34,2.789C7.179,4.49,6.214,6.82,6.214,9.361v5.096H4.683c-0.629,0-1.145,0.512-1.145,1.145v13.471 c0,0.637,0.516,1.148,1.145,1.148h20.852c0.635,0,1.148-0.512,1.148-1.148V15.602C26.683,14.969,26.169,14.457,25.534,14.457z M10.436,9.361c0-1.465,0.559-2.766,1.42-3.686c0.867-0.922,2-1.453,3.254-1.453c1.252,0,2.385,0.531,3.25,1.453 c0.865,0.92,1.42,2.221,1.42,3.686v5.096h-9.344V9.361z"/>
+        </svg>
+        <input id="gate-input" type="text" class="password--input" placeholder="Digite a senha" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" required aria-label="Senha"/>
+      </div>
       <button id="gate-submit" type="submit">Acessar Apresentação</button>
       <div id="gate-error" role="alert"></div>
     </form>
