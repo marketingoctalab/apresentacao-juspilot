@@ -1385,7 +1385,137 @@ section{overflow:hidden}
 
 </style>
 </head>
-<body>
+<body class="locked">
+
+<!-- ── PASSWORD GATE ──────────────────────────────────── -->
+<style>
+  body.locked{overflow:hidden}
+  body.locked > *:not(#gate){display:none!important}
+  body.locked > #gate{display:flex!important}
+  #gate{
+    position:fixed;inset:0;z-index:99999;
+    background:var(--dark);color:#fff;
+    display:none;align-items:center;justify-content:center;
+    padding:2rem 1.5rem;flex-direction:column;
+    background-image:
+      radial-gradient(ellipse 70% 50% at 85% 10%,rgba(217,119,87,.14) 0%,transparent 60%),
+      radial-gradient(ellipse 40% 40% at 15% 90%,rgba(217,119,87,.08) 0%,transparent 60%);
+  }
+  #gate::before{
+    content:'';position:absolute;inset:0;
+    background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:28px 28px;pointer-events:none;
+  }
+  #gate-card{
+    position:relative;z-index:1;width:100%;max-width:420px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:16px;padding:2.25rem 1.75rem;
+    text-align:center;backdrop-filter:blur(12px);
+  }
+  #gate svg.gate-logo{width:54px;height:auto;margin:0 auto 1.25rem;display:block}
+  #gate .gate-tag{
+    display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--orange);background:rgba(217,119,87,.12);
+    border:1px solid rgba(217,119,87,.3);
+    padding:.35rem .8rem;border-radius:999px;margin-bottom:1.25rem;
+  }
+  #gate h1{
+    font-size:1.4rem;font-weight:700;letter-spacing:-.5px;
+    color:#fff;margin-bottom:.5rem;line-height:1.3;
+  }
+  #gate p{
+    font-size:.88rem;color:rgba(255,255,255,.6);
+    line-height:1.55;margin-bottom:1.75rem;
+  }
+  #gate-form{display:flex;flex-direction:column;gap:.75rem}
+  #gate-input{
+    width:100%;padding:.95rem 1rem;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:8px;
+    color:#fff;font-size:.95rem;font-family:'Inter',sans-serif;
+    transition:border-color .2s,background .2s;
+  }
+  #gate-input:focus{outline:none;border-color:var(--orange);background:rgba(217,119,87,.08)}
+  #gate-input::placeholder{color:rgba(255,255,255,.35)}
+  #gate-submit{
+    background:var(--orange);color:#fff;border:none;
+    padding:.95rem 1.5rem;border-radius:8px;
+    font-size:.95rem;font-weight:600;cursor:pointer;
+    transition:background .2s,transform .2s;letter-spacing:.02em;
+  }
+  #gate-submit:hover{background:var(--orange-dark);transform:translateY(-1px)}
+  #gate-error{
+    font-size:.82rem;color:#ff8a7a;
+    margin-top:.5rem;min-height:1.2em;line-height:1.4;
+    opacity:0;transition:opacity .2s;
+  }
+  #gate-error.show{opacity:1}
+  #gate-foot{
+    margin-top:1.5rem;font-size:.7rem;color:rgba(255,255,255,.35);
+    letter-spacing:.08em;
+  }
+</style>
+
+<div id="gate" role="dialog" aria-labelledby="gate-title" aria-modal="true">
+  <div id="gate-card">
+    <svg class="gate-logo" viewBox="0 0 266 283" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M187.131 67.9395C193.725 67.9397 199.07 73.2858 199.07 79.8799V92.1074C199.07 98.7015 193.725 104.048 187.131 104.048H149.896V176.593L149.711 177.873C144.481 214.154 113.138 226.03 95.0566 224.152C85.1393 223.122 77.9341 214.247 78.9639 204.33C79.9941 194.413 88.8689 187.207 98.7861 188.237C98.8506 188.242 98.9547 188.246 99.0342 188.246C99.1958 188.246 99.4162 188.238 99.6904 188.214C100.246 188.164 100.949 188.051 101.753 187.841C103.381 187.414 105.153 186.66 106.8 185.532C109.592 183.62 112.597 180.286 113.788 173.838V104.048H76.0811C69.4869 104.048 64.1406 98.7016 64.1406 92.1074V79.8799C64.1406 73.2857 69.4869 67.9395 76.0811 67.9395H187.131Z" fill="#D97757"/>
+      <path d="M232.801 50.836C232.801 41.1275 224.93 33.2572 215.222 33.2572H50.836C41.1275 33.2572 33.2572 41.1275 33.2572 50.836V232.325C33.2572 242.034 41.1275 249.904 50.836 249.904H215.222C224.93 249.904 232.801 242.034 232.801 232.325V50.836ZM266.058 232.325C266.058 260.401 243.298 283.162 215.222 283.162H50.836C22.7601 283.162 0 260.401 0 232.325V50.836C0 22.7601 22.7601 0 50.836 0H215.222C243.298 0 266.058 22.7601 266.058 50.836V232.325Z" fill="#D97757"/>
+    </svg>
+    <span class="gate-tag">Conteúdo confidencial</span>
+    <h1 id="gate-title">Apresentação protegida</h1>
+    <p>Esta proposta é restrita. Insira a senha para acessar.</p>
+    <form id="gate-form" autocomplete="off">
+      <input id="gate-input" type="password" placeholder="Digite a senha" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" required/>
+      <button id="gate-submit" type="submit">Acessar Apresentação</button>
+      <div id="gate-error" role="alert"></div>
+    </form>
+    <div id="gate-foot">Octalab · Juspilot · 2026</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Hash SHA-256 da senha (gerado offline) para evitar plain-text no source.
+  // Senha: Ernestroborges123
+  var EXPECTED = '9ad889d13e8fc2cf9db664fa027becc7e6a76f6d6d464e8f0568b6654069eaee';
+  var STORAGE_KEY = 'jp_unlocked_v1';
+
+  async function sha256(s){
+    var b = new TextEncoder().encode(s);
+    var h = await crypto.subtle.digest('SHA-256', b);
+    return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');
+  }
+  function unlock(){
+    document.body.classList.remove('locked');
+    try{ sessionStorage.setItem(STORAGE_KEY, '1'); }catch(e){}
+  }
+  // Auto unlock se sessão já validada
+  try{ if(sessionStorage.getItem(STORAGE_KEY)==='1'){ unlock(); return; } }catch(e){}
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var form = document.getElementById('gate-form');
+    var input = document.getElementById('gate-input');
+    var err = document.getElementById('gate-error');
+    setTimeout(function(){ try{ input.focus(); }catch(e){} }, 100);
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      err.classList.remove('show');
+      var hash = await sha256(input.value);
+      if(hash === EXPECTED){
+        unlock();
+      } else {
+        err.textContent = 'Senha incorreta. Tente novamente.';
+        err.classList.add('show');
+        input.value = '';
+        input.focus();
+      }
+    });
+  });
+})();
+</script>
 
 <!-- NAV -->
 <nav>
