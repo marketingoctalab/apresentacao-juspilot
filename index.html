@@ -1079,6 +1079,124 @@ body.menu-open{overflow:hidden}
 }
 .oferta-cockpit-inner{max-width:1160px;margin:0 auto}
 
+/* ════════════════════════════════════════════════════════
+   PRICING (planos comerciais Juspilot)
+   ════════════════════════════════════════════════════════ */
+.plans-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;margin-top:2rem;
+}
+.plan-card{
+  position:relative;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;padding:1.75rem 1.5rem;
+  display:flex;flex-direction:column;gap:1rem;
+  transition:border-color .3s,box-shadow .3s,transform .3s;
+}
+.plan-card:hover{border-color:rgba(217,119,87,.3);box-shadow:0 8px 28px rgba(0,0,0,.06);transform:translateY(-2px)}
+.plan-card.featured{
+  border-color:var(--dark);
+  background:var(--dark);
+  color:#fff;
+}
+.plan-card.featured .plan-name,.plan-card.featured .plan-price-num{color:#fff}
+.plan-card.featured .plan-tagline,.plan-card.featured .plan-feature,.plan-card.featured .plan-features-head,.plan-card.featured .plan-price-unit{color:rgba(255,255,255,.7)}
+.plan-card.featured .plan-icon{background:rgba(255,255,255,.08);color:var(--orange)}
+.plan-card.featured .plan-feature .check{color:var(--orange)}
+.plan-badge{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  display:inline-flex;align-items:center;gap:.35rem;
+  background:var(--orange);color:#fff;
+  font-size:.66rem;font-weight:700;letter-spacing:.08em;
+  padding:.35rem .8rem;border-radius:999px;
+  white-space:nowrap;
+  box-shadow:0 4px 12px rgba(217,119,87,.35);
+}
+.plan-icon{
+  width:42px;height:42px;border-radius:10px;
+  background:var(--off-white);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--black);
+  margin-bottom:.25rem;
+}
+.plan-icon svg{width:20px;height:20px}
+.plan-name{
+  font-size:1.15rem;font-weight:700;letter-spacing:-.3px;
+  color:var(--black);margin-bottom:.2rem;
+}
+.plan-tagline{
+  font-size:.82rem;color:var(--muted);line-height:1.45;
+  min-height:2.4em;
+}
+.plan-price{
+  display:flex;align-items:baseline;gap:.4rem;
+  margin:.4rem 0 .25rem;
+}
+.plan-price-num{
+  font-size:2.1rem;font-weight:700;letter-spacing:-1.2px;
+  color:var(--black);line-height:1;
+  font-feature-settings:"tnum";
+}
+.plan-price-unit{font-size:.82rem;color:var(--muted);font-weight:500}
+.plan-features-head{
+  font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-top:.4rem;margin-bottom:.2rem;
+}
+.plan-features{
+  list-style:none;padding:0;margin:0;
+  display:flex;flex-direction:column;gap:.5rem;flex:1;
+}
+.plan-feature{
+  display:flex;align-items:flex-start;gap:.6rem;
+  font-size:.85rem;line-height:1.5;color:var(--black);
+}
+.plan-feature .check{color:var(--green);font-weight:700;flex-shrink:0;width:14px;text-align:center;margin-top:1px}
+.plan-cta{
+  margin-top:.85rem;
+  padding:.85rem 1.25rem;border-radius:8px;
+  font-size:.88rem;font-weight:600;letter-spacing:-.1px;
+  text-align:center;cursor:pointer;
+  background:transparent;color:var(--black);
+  border:1px solid var(--border);
+  transition:all .25s;
+}
+.plan-cta:hover{border-color:var(--dark);background:var(--dark);color:#fff}
+.plan-card.featured .plan-cta{
+  background:var(--orange);color:#fff;border-color:var(--orange);
+}
+.plan-card.featured .plan-cta:hover{background:var(--orange-dark);border-color:var(--orange-dark)}
+
+/* Enterprise row (full width) */
+.plan-enterprise{
+  margin-top:1.25rem;
+  background:var(--white);border:1px solid var(--border);border-radius:14px;
+  padding:1.5rem 1.75rem;
+  display:grid;grid-template-columns:auto 1fr auto;gap:1.5rem;align-items:center;
+  transition:border-color .3s,box-shadow .3s;
+}
+.plan-enterprise:hover{border-color:rgba(217,119,87,.3);box-shadow:0 8px 28px rgba(0,0,0,.06)}
+.plan-enterprise-info h4{
+  font-size:1.05rem;font-weight:700;color:var(--black);
+  letter-spacing:-.3px;margin-bottom:.25rem;
+}
+.plan-enterprise-info p{
+  font-size:.85rem;color:var(--muted);line-height:1.5;
+  margin-bottom:.6rem;max-width:60ch;
+}
+.plan-enterprise-features{
+  display:flex;flex-wrap:wrap;gap:.4rem .9rem;
+  font-size:.78rem;color:var(--black);
+}
+.plan-enterprise-features span{display:inline-flex;align-items:center;gap:.35rem}
+.plan-enterprise-features .check{color:var(--green);font-weight:700}
+.plan-enterprise .plan-cta{margin-top:0;white-space:nowrap;padding:.85rem 1.4rem}
+
+@media(max-width:900px){
+  .plans-grid{grid-template-columns:1fr;gap:1rem}
+  .plan-enterprise{grid-template-columns:1fr;gap:1rem;padding:1.4rem}
+  .plan-enterprise .plan-cta{width:100%}
+}
+
 /* ════════════════════════════════════════════════════════════
    MOBILE FINAL POLISH — comfort layer (overrides above)
    ════════════════════════════════════════════════════════════ */
@@ -1705,33 +1823,113 @@ section{overflow:hidden}
 <div class="inner">
   <div class="sec-label">Parte 5: Modelo de Negócio</div>
   <h2 class="sec-title">Receita recorrente com expansão por uso</h2>
-  <p class="sec-lead" style="margin-bottom:3rem">Assinatura SaaS como base + consumo de créditos de IA como expansão natural. Quanto mais o escritório usa, maior o valor entregue e o MRR.</p>
+  <p class="sec-lead" style="margin-bottom:3rem">Assinatura SaaS como base e consumo de créditos de IA como expansão natural. Quanto mais o escritório usa, maior o valor entregue e o MRR.</p>
 
-  <div class="grid-2" style="align-items:start;gap:4rem">
-    <div>
-      <div class="compare-table-wrap">
-      <table class="pricing-table">
-        <thead><tr><th>Plano</th><th>Preço</th><th>Créditos de IA / mês</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><span class="pricing-plan">Free</span></td>
-            <td>Gratuito</td>
-            <td>50</td>
-          </tr>
-          <tr class="pricing-highlight">
-            <td><span class="pricing-plan" style="color:var(--orange)">Pro</span></td>
-            <td>R$ 500 / mês<br><small style="color:var(--muted)">R$ 4.800 / ano (20% off)</small></td>
-            <td>10.000<br><small style="color:var(--muted)">~10M tokens / mês</small></td>
-          </tr>
-          <tr>
-            <td><span class="pricing-plan">Enterprise</span></td>
-            <td>Sob consulta</td>
-            <td>100.000+</td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- 3 planos principais -->
+  <div class="plans-grid">
+
+    <!-- ESSENCIAL -->
+    <div class="plan-card">
+      <div class="plan-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7 4 7-4"/><path d="M5 8v8l7 4 7-4V8"/></svg>
       </div>
-      <div class="pull-quote" style="margin-top:1.5rem">1 crédito ≈ 1.000 tokens. O plano Pro cobre <strong>dezenas de minutas, pesquisas e análises por dia</strong>, e o escritório nunca atinge o teto em uso normal.</div>
+      <div class="plan-name">Essencial</div>
+      <div class="plan-tagline">Para conhecer a plataforma.</div>
+      <div class="plan-price">
+        <span class="plan-price-num">R$ 0</span>
+      </div>
+      <div class="plan-features-head">O que está incluído</div>
+      <ul class="plan-features">
+        <li class="plan-feature"><span class="check">✓</span><span>Chat IA básico (1 modelo)</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>50 créditos IA por mês</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>1 caso ativo</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Workspace pessoal</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Gestão de casos</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Geração de minutas</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Jurisprudência</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Reuniões com transcrição IA</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>CRM Jurídico básico</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Data Room (até 10 arquivos)</span></li>
+      </ul>
+      <button class="plan-cta">Começar Grátis</button>
+    </div>
+
+    <!-- SOLO -->
+    <div class="plan-card">
+      <div class="plan-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </div>
+      <div class="plan-name">Solo</div>
+      <div class="plan-tagline">Para advogados autônomos.</div>
+      <div class="plan-price">
+        <span class="plan-price-num">R$ 127</span>
+        <span class="plan-price-unit">/ mês</span>
+      </div>
+      <div class="plan-features-head">Tudo do Essencial, mais</div>
+      <ul class="plan-features">
+        <li class="plan-feature"><span class="check">✓</span><span>Todos os modelos de IA</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>1.000 créditos IA por mês</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Casos ilimitados</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Workspace completo</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>CRM Jurídico completo</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Contratos e assinaturas (10 por mês)</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Data Room (até 50 arquivos)</span></li>
+      </ul>
+      <button class="plan-cta">Começar Agora</button>
+    </div>
+
+    <!-- PROFESSIONAL (featured) -->
+    <div class="plan-card featured">
+      <span class="plan-badge">⚡ Mais popular</span>
+      <div class="plan-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+      </div>
+      <div class="plan-name">Professional</div>
+      <div class="plan-tagline">Para escritórios em crescimento.</div>
+      <div class="plan-price">
+        <span class="plan-price-num">R$ 247</span>
+        <span class="plan-price-unit">/ usuário / mês</span>
+      </div>
+      <div class="plan-features-head">Tudo do Solo, mais</div>
+      <ul class="plan-features">
+        <li class="plan-feature"><span class="check">✓</span><span>5.000 créditos IA por mês</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>A partir de 3 usuários</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Data Room ilimitado</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Portal do escritório</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Agentes de IA personalizados</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Automações de workflow</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Assinaturas ilimitadas</span></li>
+        <li class="plan-feature"><span class="check">✓</span><span>Extração de dados com IA</span></li>
+      </ul>
+      <button class="plan-cta">Escolher Plano</button>
+    </div>
+
+  </div>
+
+  <!-- ENTERPRISE row -->
+  <div class="plan-enterprise">
+    <div class="plan-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 12v.01M9 15v.01M9 18v.01"/></svg>
+    </div>
+    <div class="plan-enterprise-info">
+      <h4>Enterprise</h4>
+      <p>Para grandes escritórios, departamentos jurídicos e operações com necessidades específicas.</p>
+      <div class="plan-enterprise-features">
+        <span><span class="check">✓</span>Usuários ilimitados</span>
+        <span><span class="check">✓</span>Múltiplos times</span>
+        <span><span class="check">✓</span>White label completo</span>
+        <span><span class="check">✓</span>SSO / SAML</span>
+        <span><span class="check">✓</span>Modelos IA com fine tuning</span>
+        <span><span class="check">✓</span>API dedicada</span>
+      </div>
+    </div>
+    <button class="plan-cta">Falar com Vendas →</button>
+  </div>
+
+  <!-- Pull quote + revenue chart -->
+  <div class="grid-2" style="align-items:start;gap:clamp(1.5rem,4vw,3rem);margin-top:clamp(2.5rem,5vw,3.5rem)">
+    <div>
+      <div class="pull-quote" style="margin-top:0">1 crédito equivale a aproximadamente 1.000 tokens de IA. O plano <strong>Professional</strong> cobre <strong>dezenas de minutas, pesquisas e análises por dia</strong>, e o escritório raramente atinge o teto em uso normal.</div>
     </div>
     <div>
       <div class="chart-wrap gsap-fade">
@@ -2262,9 +2460,9 @@ new Chart(document.getElementById('chartMarket'),{
 new Chart(document.getElementById('chartRevenue'),{
   type:'doughnut',
   data:{
-    labels:['Assinatura SaaS','Consumo IA extra','White-label','Integrações premium'],
+    labels:isMobile() ? ['Assinaturas','Créditos extras','Enterprise','API'] : ['Assinaturas (Solo + Professional)','Créditos de IA extras','Enterprise / White label','API dedicada'],
     datasets:[{
-      data:[55,25,12,8],
+      data:[58,22,14,6],
       backgroundColor:[BRAND.orange,'#e89478','#f4c4af','rgba(217,119,87,.25)'],
       borderColor:'#fff', borderWidth:3, hoverOffset:8, spacing:2,
     }]
