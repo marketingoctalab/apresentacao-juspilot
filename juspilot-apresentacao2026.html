@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Juspilot Proposta para Sócio-Investidor Estratégico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --orange:#D97757;
+  --orange-dark:#b85e3e;
+  --black:#101010;
+  --dark:#1C1917;
+  --dark2:#252220;
+  --white:#FFFFFF;
+  --off-white:#FAFAF9;
+  --sand:#F0EDEB;
+  --border:#E3E0DD;
+  --muted:#7A7370;
+  --green:#2B9C98;
+  --nav-h:68px;
+  /* Fluid spacing scale */
+  --space-section: clamp(3rem, 8vw, 6rem);
+  --space-gap: clamp(1rem, 2.5vw, 2rem);
+  --pad-x: clamp(1.25rem, 4vw, 2rem);
+  --radius-card: 12px;
+}
+@media(max-width:600px){:root{--nav-h:60px}}
+html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white);overflow-x:hidden;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg{max-width:100%;height:auto}
+*:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:3px}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;height:var(--nav-h);
+  background:rgba(28,25,23,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;z-index:900;
+}
+.nav-inner{
+  width:100%;max-width:1160px;margin:0 auto;padding:0 var(--pad-x);
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+.nav-logo{display:flex;align-items:center;gap:.75rem;cursor:pointer;text-decoration:none}
+.nav-logo svg{height:26px;width:auto;flex-shrink:0}
+.nav-logo-text{
+  font-size:.95rem;font-weight:600;color:#fff;letter-spacing:-.3px;
+  white-space:nowrap;
+}
+.nav-links{display:flex;align-items:center;gap:clamp(.9rem,2vw,2rem);flex:1;justify-content:center}
+.nav-links a{
+  font-size:.8rem;font-weight:500;color:rgba(255,255,255,.65);
+  text-decoration:none;letter-spacing:.02em;
+  transition:color .25s;white-space:nowrap;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--orange)}
+.nav-cta{
+  background:var(--orange);color:#fff;border:none;
+  padding:.55rem 1.25rem;border-radius:3px;
+  font-size:.8rem;font-weight:600;cursor:pointer;
+  letter-spacing:.02em;transition:background .2s,transform .2s;
+  white-space:nowrap;
+}
+.nav-cta:hover{background:var(--orange-dark);transform:translateY(-1px)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:12px;margin:-12px;border-radius:6px;transition:background .2s}
+.nav-hamburger:hover{background:rgba(255,255,255,.06)}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#fff;transition:transform .3s,opacity .3s}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{
+  position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;
+  background:var(--dark);
+  z-index:899;padding:2rem var(--pad-x) 4rem;flex-direction:column;gap:.25rem;
+  overflow-y:auto;
+  opacity:0;visibility:hidden;transform:translateY(-8px);
+  transition:opacity .25s ease,transform .25s ease,visibility .25s;
+  display:flex;
+}
+.mobile-menu a{
+  font-size:1.05rem;font-weight:500;color:rgba(255,255,255,.85);
+  text-decoration:none;padding:1rem 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  letter-spacing:-.2px;min-height:44px;display:flex;align-items:center;
+  transition:color .2s,padding-left .2s;
+}
+.mobile-menu a:hover,.mobile-menu a:focus-visible{color:var(--orange);padding-left:.4rem}
+.mobile-menu.open{opacity:1;visibility:visible;transform:translateY(0)}
+body.menu-open{overflow:hidden}
+
+/* ── SIDE DOTS ───────────────────────────────────────── */
+.side-dots{
+  position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:14px;z-index:800;
+  padding:.75rem .5rem;border-radius:999px;
+  background:rgba(255,255,255,.6);backdrop-filter:blur(12px);
+  border:1px solid rgba(0,0,0,.05);
+}
+.dot{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(28,25,23,.22);cursor:pointer;
+  transition:background .3s,transform .3s,width .3s;border:1.5px solid transparent;
+  position:relative;
+}
+.dot::after{
+  content:attr(title);position:absolute;right:calc(100% + 14px);top:50%;
+  transform:translateY(-50%) translateX(4px);
+  background:var(--dark);color:#fff;font-size:.7rem;font-weight:500;
+  padding:.35rem .65rem;border-radius:4px;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
+  letter-spacing:-.1px;
+}
+.dot:hover::after{opacity:1;transform:translateY(-50%) translateX(0)}
+.dot:hover,.dot.active{background:var(--orange);border-color:var(--orange);transform:scale(1.3)}
+.dot.active{box-shadow:0 0 0 4px rgba(217,119,87,.18)}
+@media(max-width:1100px){.side-dots{display:none}}
+
+/* ── HERO ────────────────────────────────────────────── */
+#hero{
+  min-height:100svh;background:var(--dark);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  padding:calc(var(--nav-h) + clamp(2rem,8vw,4rem)) var(--pad-x) clamp(3rem,8vw,5rem);
+  position:relative;overflow:hidden;text-align:center;
+}
+#hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 85% 10%, rgba(217,119,87,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 15% 90%, rgba(217,119,87,.06) 0%, transparent 60%);
+  pointer-events:none;
+}
+/* dot-grid texture */
+#hero::after{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size:28px 28px;pointer-events:none;
+}
+.hero-inner{position:relative;z-index:2;max-width:820px;margin:0 auto}
+.hero-logo-mark{width:64px;height:auto;margin:0 auto 2rem;display:block}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(217,119,87,.15);border:1px solid rgba(217,119,87,.3);
+  color:var(--orange);font-size:.72rem;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;padding:.4rem 1rem;border-radius:999px;
+  margin-bottom:1.75rem;
+}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1, #hero h1{
+  font-size:clamp(2.1rem, 6.2vw, 4.4rem);font-weight:700;
+  letter-spacing:clamp(-1px,-.18vw,-2.5px);line-height:1.04;margin-bottom:1.5rem;color:#fff;
+  text-wrap:balance;
+}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero-sub{
+  font-size:clamp(.95rem,1.8vw,1.15rem);color:rgba(255,255,255,.65);
+  max-width:56ch;margin:0 auto 2.5rem;line-height:1.7;
+}
+.hero-meta{
+  font-size:.8rem;color:rgba(255,255,255,.4);letter-spacing:.05em;
+  text-transform:uppercase;margin-bottom:2.5rem;
+}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.btn-primary{
+  background:var(--orange);color:#fff;border:none;
+  padding:.95rem 2rem;border-radius:6px;min-height:48px;
+  font-size:.92rem;font-weight:600;cursor:pointer;
+  transition:background .2s,transform .2s,box-shadow .2s;letter-spacing:.02em;
+  box-shadow:0 1px 0 rgba(0,0,0,.05),0 0 0 1px rgba(217,119,87,.4) inset;
+}
+@media(hover:hover){.btn-primary:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(217,119,87,.35)}}
+.btn-primary:active{transform:translateY(0)}
+.btn-outline{
+  background:transparent;color:rgba(255,255,255,.85);
+  border:1px solid rgba(255,255,255,.22);
+  padding:.95rem 2rem;border-radius:6px;min-height:48px;
+  font-size:.92rem;font-weight:500;cursor:pointer;
+  transition:border-color .2s,color .2s,background .2s;
+}
+@media(hover:hover){.btn-outline:hover{border-color:rgba(255,255,255,.55);color:#fff;background:rgba(255,255,255,.04)}}
+.hero-tagline{font-size:.8rem;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase}
+
+/* ── SECTIONS BASE ───────────────────────────────────── */
+.sec{padding:var(--space-section) 0}
+.sec.dark{background:var(--dark);color:#fff}
+.sec.off{background:var(--off-white)}
+.sec.sand{background:var(--sand)}
+.sec.white{background:var(--white)}
+
+.inner{max-width:1160px;margin:0 auto;padding:0 var(--pad-x)}
+
+.sec-label{
+  font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:.75rem;
+}
+.sec-title{
+  font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;
+  letter-spacing:-1.2px;line-height:1.15;margin-bottom:1.25rem;
+}
+.sec-title.center{text-align:center}
+.sec-lead{
+  font-size:1.05rem;color:var(--muted);line-height:1.7;
+  max-width:58ch;
+}
+.sec-lead.center{text-align:center;margin:0 auto}
+
+/* ── GRID ────────────────────────────────────────────── */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(1.5rem,4vw,3rem);align-items:start}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(1rem,2.5vw,1.5rem)}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(1rem,2.5vw,1.5rem)}
+
+/* ── CARDS ───────────────────────────────────────────── */
+.card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:6px;padding:2rem;
+  transition:box-shadow .3s,transform .3s;
+}
+.card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-3px)}
+.card.dark-card{background:var(--dark2);border-color:rgba(255,255,255,.08)}
+.card.orange-accent{border-top:3px solid var(--orange)}
+.card-label{
+  font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:.75rem;
+}
+.card h4{font-size:1rem;font-weight:600;margin-bottom:.6rem;line-height:1.35}
+.card p{font-size:.9rem;color:var(--muted);line-height:1.65}
+
+/* ── STAT BLOCKS ─────────────────────────────────────── */
+.stat-block{padding:2rem;border-radius:6px;background:var(--dark2);text-align:center}
+.stat-num{font-size:2.6rem;font-weight:700;color:var(--orange);letter-spacing:-1.5px;line-height:1}
+.stat-label{font-size:.82rem;color:rgba(255,255,255,.55);margin-top:.5rem;line-height:1.4}
+
+/* ── QUOTE ───────────────────────────────────────────── */
+.pull-quote{
+  border-left:3px solid var(--orange);padding:.75rem 1.5rem;
+  font-size:1rem;color:var(--muted);font-style:italic;
+  margin:1.5rem 0;line-height:1.7;background:var(--off-white);border-radius:0 4px 4px 0;
+}
+.pull-quote strong{color:var(--black);font-style:normal}
+
+/* ── COMPARISON TABLE ────────────────────────────────── */
+.compare-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:1.5rem}
+.compare-table th{
+  background:var(--dark);color:#fff;padding:1rem;
+  text-align:left;font-weight:600;letter-spacing:.03em;
+}
+.compare-table td{
+  padding:.9rem 1rem;border-bottom:1px solid var(--border);
+  vertical-align:top;line-height:1.5;
+}
+.compare-table tr:nth-child(even) td{background:var(--off-white)}
+.compare-table .col-bad{color:#c0392b;font-weight:500}
+.compare-table .col-good{color:var(--green);font-weight:600}
+.compare-table .col-key{font-weight:600;color:var(--black)}
+
+/* ── PRICING TABLE ───────────────────────────────────── */
+.pricing-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:1.5rem}
+.pricing-table th{
+  background:var(--orange);color:#fff;padding:1rem;
+  text-align:left;font-weight:600;
+}
+.pricing-table td{padding:.9rem 1rem;border-bottom:1px solid var(--border)}
+.pricing-table tr:nth-child(even) td{background:var(--off-white)}
+.pricing-plan{font-weight:700;font-size:.95rem}
+.pricing-highlight{background:rgba(217,119,87,.06)!important}
+.pricing-highlight td{border-top:2px solid var(--orange)!important;border-bottom:2px solid var(--orange)!important}
+
+/* ── TERMS TABLE ─────────────────────────────────────── */
+.terms-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.terms-table td{padding:1rem;border-bottom:1px solid var(--border);vertical-align:top}
+.terms-table td:first-child{
+  font-weight:600;width:35%;color:var(--black);font-size:.82rem;
+  letter-spacing:.03em;text-transform:uppercase;
+}
+.terms-table td:last-child{color:var(--muted)}
+.terms-table td strong{color:var(--black);font-weight:600}
+.terms-table tr:nth-child(even) td{background:var(--off-white)}
+
+/* ── STEPS ───────────────────────────────────────────── */
+.steps{display:flex;flex-direction:column;gap:0}
+.step{display:flex;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.step:last-child{border-bottom:none}
+.step-num{
+  flex-shrink:0;width:36px;height:36px;border-radius:50%;
+  background:var(--orange);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:700;margin-top:2px;
+}
+.step-body h5{font-size:.95rem;font-weight:600;margin-bottom:.3rem}
+.step-body p{font-size:.87rem;color:var(--muted);line-height:1.6}
+
+/* ── MODULE LIST ─────────────────────────────────────── */
+.module-list{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1.5rem}
+.module-item{
+  display:flex;align-items:flex-start;gap:.85rem;
+  padding:1rem 1.25rem;border:1px solid var(--border);
+  border-radius:5px;background:var(--white);
+}
+.module-num{
+  flex-shrink:0;font-size:.72rem;font-weight:700;color:var(--orange);
+  background:rgba(217,119,87,.1);padding:.25rem .55rem;border-radius:3px;
+  letter-spacing:.03em;margin-top:1px;
+}
+.module-item h5{font-size:.9rem;font-weight:600;margin-bottom:.2rem}
+.module-item p{font-size:.8rem;color:var(--muted);line-height:1.5}
+
+/* ── CHECK / CROSS LIST ──────────────────────────────── */
+.check-list,.cross-list{display:flex;flex-direction:column;gap:.75rem;margin-top:1rem}
+.check-item,.cross-item{display:flex;gap:.85rem;align-items:flex-start;font-size:.9rem;line-height:1.55}
+.check-icon,.cross-icon{
+  flex-shrink:0;width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:700;margin-top:1px;
+}
+.check-icon{background:rgba(43,156,152,.15);color:var(--green)}
+.cross-icon{background:rgba(192,57,43,.1);color:#c0392b}
+
+/* ── PROFILE CARD ────────────────────────────────────── */
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+.profile-box{
+  padding:2rem;border-radius:6px;border:1px solid var(--border);
+}
+.profile-box h4{
+  font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:2px solid var(--orange);
+  color:var(--orange);
+}
+
+/* ── CHART WRAPPERS ──────────────────────────────────── */
+.chart-wrap{position:relative;width:100%;padding:clamp(1.25rem,2.5vw,1.75rem);background:var(--white);border:1px solid var(--border);border-radius:var(--radius-card);transition:box-shadow .3s,border-color .3s}
+.chart-wrap:hover{box-shadow:0 8px 28px rgba(0,0,0,.06);border-color:rgba(217,119,87,.25)}
+.chart-wrap h5{font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem;line-height:1.4}
+.chart-canvas-wrap{position:relative;height:clamp(220px,32vh,280px)}
+
+/* ── DIVIDER ─────────────────────────────────────────── */
+.divider{height:1px;background:var(--border);margin:3rem 0}
+.divider.dark{background:rgba(255,255,255,.08)}
+
+/* ── SCENARIO BOX ────────────────────────────────────── */
+.scenario{
+  background:var(--off-white);border-radius:6px;
+  border:1px solid var(--border);padding:1.75rem;margin-bottom:1.25rem;
+}
+.scenario-tag{
+  font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:.6rem;
+}
+.scenario h5{font-size:.97rem;font-weight:600;margin-bottom:.5rem;color:var(--black)}
+.scenario p{font-size:.87rem;color:var(--muted);line-height:1.65}
+.scenario-metric{
+  display:inline-block;background:rgba(217,119,87,.12);
+  color:var(--orange);font-size:.75rem;font-weight:700;
+  padding:.25rem .7rem;border-radius:3px;margin-top:.75rem;
+}
+
+/* ── URGENCY ROW ─────────────────────────────────────── */
+.urgency-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}
+.urgency-item{
+  padding:1.5rem;border-radius:5px;border-left:3px solid var(--orange);
+  background:var(--off-white);
+}
+.urgency-item h5{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.urgency-item p{font-size:.85rem;color:var(--muted);line-height:1.6}
+
+/* ── CLOSING ─────────────────────────────────────────── */
+#closing{
+  background:var(--dark);color:#fff;padding:6rem 0;text-align:center;
+}
+#closing h2{
+  font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;
+  letter-spacing:-1.5px;margin-bottom:1rem;
+}
+#closing p{color:rgba(255,255,255,.6);font-size:1rem;max-width:48ch;margin:0 auto 2rem}
+.contact-grid{
+  display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;
+  margin-top:3rem;padding-top:3rem;border-top:1px solid rgba(255,255,255,.08);
+}
+.contact-item{text-align:center}
+.contact-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.4rem}
+.contact-val{font-size:.95rem;font-weight:500;color:rgba(255,255,255,.85)}
+
+/* ── RESPONSIVE BREAKPOINTS ──────────────────────────── */
+/* tablet & below: nav switches to hamburger */
+@media(max-width:1024px){
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .nav-hamburger{display:flex}
+}
+/* tablet portrait */
+@media(max-width:900px){
+  .profile-grid{grid-template-columns:1fr}
+  .module-list{grid-template-columns:1fr}
+  .urgency-row{grid-template-columns:1fr}
+  .compare-table-wrap{margin:0 calc(-1 * var(--pad-x));padding:0 var(--pad-x);overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .compare-table{min-width:560px}
+  .chart-canvas-wrap{height:240px}
+  .card{padding:1.5rem}
+}
+/* phone */
+@media(max-width:600px){
+  .hero-btns{flex-direction:column;align-items:stretch;width:100%;max-width:320px;margin-left:auto;margin-right:auto}
+  .btn-primary,.btn-outline{width:100%;text-align:center}
+  .stat-num{font-size:clamp(1.7rem,8vw,2.2rem)}
+  .pricing-table,.terms-table,.compare-table{font-size:.82rem}
+  .pricing-table th,.terms-table td,.compare-table th,.compare-table td{padding:.7rem .65rem}
+  .scenario,.urgency-item{padding:1.25rem}
+  .card{padding:1.25rem}
+  .chart-canvas-wrap{height:200px}
+  .pull-quote{padding:.6rem 1rem;font-size:.92rem}
+  /* table responsiveness — convert rows to cards on mobile */
+  .terms-table tbody,.terms-table tr,.terms-table td{display:block;width:100%}
+  .terms-table tr{border:1px solid var(--border);border-radius:8px;margin-bottom:.6rem;background:var(--white);overflow:hidden}
+  .terms-table tr:nth-child(even) td{background:transparent}
+  .terms-table td{border-bottom:none;padding:.5rem 1rem}
+  .terms-table td:first-child{background:var(--off-white);padding-top:.75rem;padding-bottom:.4rem;font-size:.7rem}
+  .terms-table td:last-child{padding-top:.2rem;padding-bottom:.85rem}
+}
+/* very small phones */
+@media(max-width:380px){
+  .hero-tag{font-size:.66rem;padding:.35rem .8rem}
+  .nav-logo-text{display:none}
+  .deal-card{padding:1.25rem}
+}
+
+/* ── ANIMATIONS (initial state) ──────────────────────── */
+.gsap-fade{opacity:0;transform:translateY(20px)}
+
+/* ── DECORATIVE ELEMENTOS (juspilot.ai brand assets) ── */
+.sec, #hero, #closing { position:relative; }
+.deco{
+  position:absolute; pointer-events:none; user-select:none;
+  z-index:1; will-change:transform;
+}
+.deco img{ width:100%; height:auto; display:block; }
+.deco.top-right{ top:-40px; right:-60px; }
+.deco.bottom-left{ bottom:-60px; left:-80px; }
+.deco.top-left{ top:40px; left:-100px; }
+.deco.bottom-right{ bottom:-40px; right:-40px; }
+.deco.mid-right{ top:50%; right:-100px; transform:translateY(-50%); }
+.deco.mid-left{ top:50%; left:-120px; transform:translateY(-50%); }
+.deco.center-bg{ top:50%; left:50%; transform:translate(-50%,-50%); }
+
+/* On dark sections, slightly more glow */
+.sec.dark .deco, #hero .deco, #closing .deco{
+  filter:drop-shadow(0 0 24px rgba(217,119,87,.18));
+}
+
+.inner, .hero-inner{ position:relative; z-index:2; }
+
+@media(max-width:900px){
+  .deco{ display:none; }
+}
+
+/* ════════════════════════════════════════════════════════
+   NOTA CONVERSÍVEL — visual didático
+   ════════════════════════════════════════════════════════ */
+
+/* Hero badge upgrade — mais "notion-badge" estilo juspilot.ai */
+.hero-badge-row{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:1.5rem}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.75);font-size:.7rem;font-weight:500;
+  padding:.35rem .8rem;border-radius:999px;letter-spacing:.02em;
+}
+.hero-pill .dot{width:5px;height:5px;border-radius:50%;background:var(--orange)}
+
+/* Eyebrow + section head pattern (notion-style) */
+.eyebrow{
+  display:inline-block;font-size:.68rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--orange);
+  padding:.3rem .7rem;border-radius:3px;
+  background:rgba(217,119,87,.08);border:1px solid rgba(217,119,87,.2);
+  margin-bottom:1rem;
+}
+.eyebrow.on-dark{background:rgba(217,119,87,.12);border-color:rgba(217,119,87,.3)}
+.eyebrow.neutral{color:var(--muted);background:rgba(0,0,0,.03);border-color:rgba(0,0,0,.06)}
+
+/* ─── DIAGRAMA DA NOTA CONVERSÍVEL ─────────────────────── */
+.note-flow{
+  display:grid;grid-template-columns:1fr auto 1fr auto 1fr;
+  gap:1rem;align-items:stretch;margin:3rem 0;
+}
+.note-stage{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;padding:1.75rem;position:relative;
+  box-shadow:0 1px 2px rgba(0,0,0,.03);
+  transition:box-shadow .3s,transform .3s;
+}
+.note-stage:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-2px)}
+.note-stage.dark{background:var(--dark2);border-color:rgba(255,255,255,.08);color:#fff}
+.note-stage-num{
+  position:absolute;top:-14px;left:1.5rem;
+  width:28px;height:28px;border-radius:50%;
+  background:var(--orange);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.78rem;font-weight:700;
+  box-shadow:0 2px 6px rgba(217,119,87,.4);
+}
+.note-stage-icon{
+  width:42px;height:42px;border-radius:10px;
+  background:rgba(217,119,87,.1);color:var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1rem;font-size:1.4rem;
+}
+.note-stage h5{font-size:.95rem;font-weight:700;margin-bottom:.4rem;letter-spacing:-.2px}
+.note-stage .stage-tag{
+  font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:.6rem;
+}
+.note-stage p{font-size:.82rem;color:var(--muted);line-height:1.55}
+.note-stage.dark p{color:rgba(255,255,255,.65)}
+.note-stage .stage-meta{
+  margin-top:.85rem;padding-top:.85rem;
+  border-top:1px solid var(--border);
+  font-size:.72rem;color:var(--muted);
+  font-family:'JetBrains Mono',monospace;
+  letter-spacing:-.01em;
+}
+.note-stage.dark .stage-meta{border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.5)}
+
+.note-arrow{
+  display:flex;align-items:center;justify-content:center;
+  color:var(--orange);font-size:1.4rem;font-weight:300;
+  min-width:32px;
+}
+.note-arrow svg{width:32px;height:auto}
+
+/* Big highlight number (like "<60s para analisar...") */
+.metric-highlight{
+  display:flex;flex-direction:column;align-items:flex-start;
+  padding:1.25rem 1.5rem;
+  background:linear-gradient(135deg,rgba(217,119,87,.08),rgba(217,119,87,.02));
+  border:1px solid rgba(217,119,87,.2);
+  border-radius:10px;margin-top:1rem;
+}
+.metric-highlight .num{
+  font-size:2rem;font-weight:700;color:var(--orange);
+  letter-spacing:-1.2px;line-height:1;margin-bottom:.3rem;
+  font-family:'Inter',sans-serif;
+}
+.metric-highlight .lbl{font-size:.78rem;color:var(--muted);line-height:1.4}
+
+/* Comparison split panel (Equity tradicional vs Nota Conversível) */
+.compare-split{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
+.compare-panel{
+  border-radius:12px;padding:1.75rem;
+  border:1px solid var(--border);background:var(--white);
+}
+.compare-panel.alt{
+  background:var(--dark);color:#fff;border-color:rgba(255,255,255,.08);
+  position:relative;overflow:hidden;
+}
+.compare-panel.alt::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 80% 10%,rgba(217,119,87,.15) 0%,transparent 60%);
+  pointer-events:none;
+}
+.compare-panel > *{position:relative;z-index:1}
+.compare-panel-tag{
+  font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:.4rem;color:var(--muted);
+}
+.compare-panel.alt .compare-panel-tag{color:var(--orange)}
+.compare-panel h4{font-size:1.1rem;font-weight:700;margin-bottom:1.1rem;letter-spacing:-.4px}
+.compare-panel ul{list-style:none;padding:0}
+.compare-panel li{
+  display:flex;align-items:flex-start;gap:.6rem;
+  font-size:.85rem;line-height:1.55;padding:.5rem 0;
+}
+.compare-panel.alt li{color:rgba(255,255,255,.85)}
+.compare-panel li .ic{
+  flex-shrink:0;width:18px;height:18px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.65rem;font-weight:700;margin-top:2px;
+}
+.compare-panel li .ic.bad{background:rgba(192,57,43,.15);color:#c0392b}
+.compare-panel li .ic.good{background:rgba(43,156,152,.18);color:var(--green)}
+.compare-panel.alt li .ic.good{background:rgba(217,119,87,.2);color:var(--orange)}
+
+/* Term-deal cards (mockup style à la juspilot.ai feature cards) */
+.deal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.deal-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;padding:1.5rem;position:relative;
+  transition:box-shadow .3s,transform .3s;
+}
+.deal-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-2px)}
+.deal-card.featured{
+  border-color:var(--orange);
+  background:linear-gradient(180deg,rgba(217,119,87,.04),var(--white));
+}
+.deal-card.featured::before{
+  content:'PRINCIPAL';position:absolute;top:-10px;right:1rem;
+  font-size:.6rem;font-weight:700;letter-spacing:.14em;
+  background:var(--orange);color:#fff;
+  padding:.25rem .6rem;border-radius:3px;
+}
+.deal-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:rgba(217,119,87,.1);color:var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:.85rem;font-size:1rem;font-weight:700;
+}
+.deal-label{
+  font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.35rem;
+}
+.deal-value{
+  font-size:1.5rem;font-weight:700;letter-spacing:-.8px;
+  color:var(--black);line-height:1.1;margin-bottom:.4rem;
+}
+.deal-card.featured .deal-value{color:var(--orange)}
+.deal-card p{font-size:.8rem;color:var(--muted);line-height:1.5}
+
+/* Cenário de conversão (worked example mockup, like the contract analysis card) */
+.scenario-mockup{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  box-shadow:0 1px 3px rgba(0,0,0,.04);
+  margin-top:1.5rem;
+}
+.scenario-mockup-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 1.25rem;
+  border-bottom:1px solid var(--border);
+  background:var(--off-white);
+}
+.scenario-mockup-header .left{display:flex;align-items:center;gap:.6rem;font-size:.78rem;font-weight:600;color:var(--black)}
+.scenario-mockup-header .pill{
+  font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--orange);background:rgba(217,119,87,.1);
+  padding:.2rem .55rem;border-radius:3px;
+}
+.scenario-mockup-body{padding:1.5rem 1.25rem}
+.scenario-row{
+  display:grid;grid-template-columns:1fr auto;gap:1rem;
+  padding:.7rem 0;border-bottom:1px dashed rgba(0,0,0,.06);
+  font-size:.83rem;
+}
+.scenario-row:last-child{border-bottom:none}
+.scenario-row .k{color:var(--muted)}
+.scenario-row .v{font-weight:600;color:var(--black);font-family:'JetBrains Mono',monospace;font-size:.8rem}
+.scenario-row.total{padding-top:1rem;margin-top:.4rem;border-top:2px solid var(--orange);border-bottom:none}
+.scenario-row.total .k{color:var(--black);font-weight:600}
+.scenario-row.total .v{color:var(--orange);font-size:.95rem}
+
+/* Trust row (logo de credibilidade — like the CNJ STJ STF row) */
+.trust-row{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:1.5rem 2.5rem;align-items:center;
+  margin:2.5rem 0 0;padding:1.5rem 0;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.trust-row .label{
+  width:100%;text-align:center;
+  font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.5rem;
+}
+.trust-row .item{
+  font-size:.85rem;font-weight:600;color:var(--muted);
+  letter-spacing:-.2px;opacity:.75;
+}
+
+/* Mini-glossary for conversion terms */
+.gloss-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.5rem}
+.gloss-card{
+  background:var(--off-white);border-left:3px solid var(--orange);
+  border-radius:0 8px 8px 0;padding:1.1rem 1.25rem;
+}
+.gloss-card .term{
+  font-size:.85rem;font-weight:700;color:var(--black);
+  margin-bottom:.3rem;font-family:'JetBrains Mono',monospace;
+  letter-spacing:-.01em;
+}
+.gloss-card .def{font-size:.82rem;color:var(--muted);line-height:1.55}
+
+@media(max-width:900px){
+  .note-flow{grid-template-columns:1fr;gap:.5rem}
+  .note-arrow{transform:rotate(90deg);padding:.5rem 0}
+  .compare-split{grid-template-columns:1fr}
+  .deal-grid{grid-template-columns:1fr}
+  .gloss-grid{grid-template-columns:1fr}
+}
+
+/* ════════════════════════════════════════════════════════
+   TERM SHEET (executive) + INTENT cards
+   ════════════════════════════════════════════════════════ */
+.termsheet{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+  margin-bottom:clamp(2rem,5vw,3rem);
+}
+.termsheet-head{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1rem 1.5rem;background:var(--dark);color:#fff;
+  border-bottom:2px solid var(--orange);
+  flex-wrap:wrap;
+}
+.termsheet-title{display:flex;flex-direction:column;gap:.25rem}
+.termsheet-doc{
+  font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:#fff;
+}
+.termsheet-status{
+  font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+}
+.termsheet-id{
+  font-size:.7rem;font-family:'JetBrains Mono',monospace;
+  color:var(--orange);letter-spacing:.05em;
+  padding:.3rem .6rem;border:1px solid rgba(217,119,87,.4);
+  border-radius:4px;background:rgba(217,119,87,.08);
+}
+.termsheet-body{padding:.5rem 0}
+.ts-row{
+  display:grid;grid-template-columns:minmax(180px,1.1fr) 2fr;
+  gap:1.5rem;align-items:baseline;
+  padding:.95rem 1.5rem;
+  border-bottom:1px solid var(--border);
+}
+.ts-row:last-child{border-bottom:none}
+.ts-row:hover{background:var(--off-white)}
+.ts-k{
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);
+}
+.ts-v{
+  font-size:.92rem;color:var(--black);line-height:1.5;
+  font-weight:500;
+}
+.ts-v.featured{
+  color:var(--orange);font-weight:700;font-size:.98rem;
+}
+.termsheet-foot{
+  padding:1rem 1.5rem;background:var(--off-white);
+  font-size:.75rem;color:var(--muted);line-height:1.5;
+  border-top:1px solid var(--border);
+}
+@media(max-width:680px){
+  .ts-row{grid-template-columns:1fr;gap:.25rem;padding:.95rem 1.25rem}
+}
+
+/* Intent cards (3 razões de por que assim) */
+.intent-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1rem;margin-top:clamp(2rem,4vw,3rem);
+}
+.intent-card{
+  padding:1.75rem;border-radius:12px;
+  background:var(--white);border:1px solid var(--border);
+  position:relative;transition:border-color .3s,transform .3s,box-shadow .3s;
+}
+.intent-card:hover{border-color:rgba(217,119,87,.4);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.06)}
+.intent-card.featured{
+  background:linear-gradient(180deg,rgba(217,119,87,.05),var(--white));
+  border-color:rgba(217,119,87,.3);
+}
+.intent-num{
+  font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  font-family:'JetBrains Mono',monospace;
+  color:var(--orange);margin-bottom:.85rem;
+}
+.intent-card h4{
+  font-size:1rem;font-weight:700;letter-spacing:-.3px;
+  line-height:1.35;margin-bottom:.6rem;color:var(--black);
+}
+.intent-card p{
+  font-size:.85rem;color:var(--muted);line-height:1.6;
+}
+@media(max-width:900px){
+  .intent-grid{grid-template-columns:1fr}
+}
+
+/* ════════════════════════════════════════════════════════
+   MERCADO — visual depth + grandeur
+   ════════════════════════════════════════════════════════ */
+.market-hero{
+  display:grid;grid-template-columns:1.1fr 1fr;
+  gap:clamp(2rem,5vw,4rem);align-items:center;
+  margin-bottom:clamp(2.5rem,6vw,4rem);
+}
+.market-hero-text h2{
+  font-size:clamp(1.9rem,4.4vw,3rem);font-weight:700;
+  letter-spacing:-1.5px;line-height:1.08;color:#fff;
+  margin-bottom:1.25rem;text-wrap:balance;
+}
+.market-hero-text h2 em{font-style:normal;color:var(--orange)}
+.market-hero-text p{
+  color:rgba(255,255,255,.65);font-size:1.05rem;line-height:1.7;
+  max-width:52ch;
+}
+/* TAM/SAM/SOM stacked layered cards */
+.tam-stack{
+  display:flex;flex-direction:column;gap:.75rem;
+  max-width:420px;margin-left:auto;width:100%;
+}
+.tam-row{
+  display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;
+  padding:1.1rem 1.3rem;border-radius:12px;
+  border:1px solid rgba(217,119,87,.18);
+  background:linear-gradient(135deg,rgba(217,119,87,.04),rgba(217,119,87,.01));
+  position:relative;overflow:hidden;
+}
+.tam-row.sam{
+  margin-left:1.25rem;
+  border-color:rgba(217,119,87,.32);
+  background:linear-gradient(135deg,rgba(217,119,87,.10),rgba(217,119,87,.04));
+}
+.tam-row.som{
+  margin-left:2.5rem;
+  border-color:rgba(217,119,87,.55);
+  background:linear-gradient(135deg,rgba(217,119,87,.22),rgba(217,119,87,.08));
+  box-shadow:0 8px 32px rgba(217,119,87,.18);
+}
+.tam-row .tag{
+  font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--orange);
+  background:rgba(217,119,87,.12);border:1px solid rgba(217,119,87,.3);
+  padding:.3rem .55rem;border-radius:4px;
+  font-family:'JetBrains Mono',monospace;letter-spacing:.1em;
+}
+.tam-row.som .tag{background:var(--orange);color:#fff;border-color:var(--orange)}
+.tam-row .desc{
+  font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.4;
+}
+.tam-row.som .desc{color:rgba(255,255,255,.85)}
+.tam-row .val{
+  font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:-.4px;
+  font-feature-settings:"tnum";white-space:nowrap;
+}
+.tam-row.som .val{color:var(--orange);font-size:1.3rem}
+@media(max-width:900px){
+  .tam-stack{margin:0 auto}
+  .tam-row.sam{margin-left:0}
+  .tam-row.som{margin-left:0}
+}
+
+/* Big stat blocks — upgrade with gradient + animated glow */
+.stat-block{
+  padding:clamp(1.5rem,3vw,2rem);border-radius:var(--radius-card);
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.08);
+  text-align:left;position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s;
+}
+.stat-block:hover{border-color:rgba(217,119,87,.35);transform:translateY(-2px)}
+.stat-block::before{
+  content:'';position:absolute;top:-30px;right:-30px;
+  width:80px;height:80px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,119,87,.18),transparent 70%);
+  opacity:0;transition:opacity .4s;
+}
+.stat-block:hover::before{opacity:1}
+.stat-num{
+  font-size:clamp(2rem,4.8vw,3.2rem);font-weight:700;
+  color:var(--orange);letter-spacing:-1.8px;line-height:1;
+  font-feature-settings:"tnum";
+}
+.stat-label{
+  font-size:.82rem;color:rgba(255,255,255,.55);
+  margin-top:.6rem;line-height:1.5;
+}
+.stat-trend{
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.7rem;font-weight:600;color:var(--orange);
+  margin-top:.6rem;padding:.2rem .55rem;border-radius:3px;
+  background:rgba(217,119,87,.1);border:1px solid rgba(217,119,87,.25);
+  letter-spacing:.04em;
+}
+
+/* Timing window — cinematic timeline */
+.timing-window{
+  margin-top:clamp(2.5rem,5vw,4rem);
+  padding:clamp(1.75rem,4vw,2.75rem);
+  border-radius:16px;
+  background:linear-gradient(135deg,rgba(217,119,87,.08),rgba(217,119,87,.02));
+  border:1px solid rgba(217,119,87,.2);
+  position:relative;overflow:hidden;
+}
+.timing-window::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 50% 80% at 100% 50%,rgba(217,119,87,.12),transparent 60%);
+  pointer-events:none;
+}
+.timing-window > *{position:relative;z-index:1}
+.timing-window-head{
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(1.25rem,3vw,2rem);
+  align-items:center;margin-bottom:2rem;
+}
+.timing-window-head .big{
+  font-size:clamp(2rem,4.6vw,3.2rem);font-weight:700;
+  color:#fff;letter-spacing:-1.2px;line-height:1;
+  font-feature-settings:"tnum";white-space:nowrap;
+}
+.timing-window-head .label{
+  font-size:clamp(.82rem,1.2vw,.92rem);
+  color:rgba(255,255,255,.7);
+  font-weight:400;letter-spacing:-.1px;line-height:1.55;
+}
+.timing-track{position:relative;padding-top:1.6rem;padding-bottom:.25rem}
+.timing-bar{
+  position:relative;height:8px;border-radius:999px;
+  background:rgba(255,255,255,.08);
+  margin-bottom:1rem;
+}
+.timing-bar-fill{
+  position:absolute;top:0;bottom:0;left:0;width:50%;
+  background:linear-gradient(90deg,var(--orange),rgba(217,119,87,.5));
+  border-radius:999px;
+  box-shadow:0 0 24px rgba(217,119,87,.35);
+}
+.timing-now-pin{
+  position:absolute;top:0;left:50%;transform:translate(-50%,-50%);
+  width:18px;height:18px;border-radius:50%;
+  background:var(--orange);
+  border:3px solid var(--dark);
+  box-shadow:0 0 0 4px rgba(217,119,87,.3);
+  animation:pulse 2.4s infinite;
+}
+.timing-now-label{
+  position:absolute;top:-4px;left:50%;transform:translate(-50%,-100%);
+  font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--orange);white-space:nowrap;
+  background:rgba(217,119,87,.12);
+  border:1px solid rgba(217,119,87,.35);
+  padding:.3rem .6rem;border-radius:4px;
+}
+.timing-bar-marks{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  font-size:.66rem;color:rgba(255,255,255,.5);
+  letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+}
+.timing-marker{position:relative;text-align:left}
+.timing-marker:last-child{text-align:right}
+@media(max-width:600px){
+  .timing-window-head{grid-template-columns:1fr;gap:.75rem}
+  .timing-bar-marks{font-size:.6rem;gap:.5rem}
+}
+
+/* Analog vertical comparison — timeline of who came before */
+.analog-row{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));
+  gap:1rem;margin-top:2rem;
+}
+.analog-card{
+  padding:1.4rem 1.25rem;border-radius:10px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  position:relative;
+}
+.analog-card .vertical{
+  font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:.4rem;
+}
+.analog-card h6{font-size:.92rem;font-weight:600;color:#fff;margin-bottom:.25rem}
+.analog-card .desc{font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.55;margin-bottom:.85rem}
+.analog-card .winner{
+  display:inline-block;font-size:.7rem;font-weight:600;color:var(--orange);
+  padding:.25rem .55rem;border-radius:4px;
+  background:rgba(217,119,87,.12);border:1px solid rgba(217,119,87,.25);
+  letter-spacing:-.1px;
+}
+
+@media(max-width:900px){
+  .market-hero{grid-template-columns:1fr;text-align:center}
+  .market-hero-text p{margin-left:auto;margin-right:auto}
+  .tam-sam-som{max-width:300px}
+}
+
+/* ════════════════════════════════════════════════════════
+   OFERTA — cinematic grand reveal + cockpit body
+   ════════════════════════════════════════════════════════ */
+#oferta{padding-top:0;padding-bottom:0;background:none}
+.oferta-cinema{
+  position:relative;background:var(--dark);color:#fff;
+  padding:clamp(4rem,10vw,8rem) var(--pad-x) clamp(4rem,9vw,7rem);
+  overflow:hidden;text-align:center;
+}
+.oferta-cinema::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%,rgba(217,119,87,.18),transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 100%,rgba(217,119,87,.06),transparent 60%);
+  pointer-events:none;
+}
+.oferta-cinema::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:32px 32px;mask:radial-gradient(ellipse 60% 80% at 50% 50%,#000 30%,transparent 80%);
+  pointer-events:none;
+}
+.oferta-cinema-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto}
+.oferta-eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--orange);
+  padding:.45rem 1.1rem;border-radius:999px;
+  background:rgba(217,119,87,.12);border:1px solid rgba(217,119,87,.3);
+  margin-bottom:1.75rem;
+}
+.oferta-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
+.oferta-headline{
+  font-size:clamp(2.4rem,7vw,5rem);font-weight:700;
+  letter-spacing:-2.5px;line-height:1.02;
+  margin-bottom:1.5rem;color:#fff;text-wrap:balance;
+}
+.oferta-headline em{font-style:normal;background:linear-gradient(135deg,var(--orange),#f0a07c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.oferta-deck{
+  font-size:clamp(1rem,1.7vw,1.2rem);
+  color:rgba(255,255,255,.7);max-width:60ch;margin:0 auto 3rem;
+  line-height:1.7;
+}
+/* The grand stat row — three giant numbers */
+.oferta-grand{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;margin-top:clamp(2.5rem,5vw,4rem);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;overflow:hidden;
+  background:rgba(255,255,255,.02);backdrop-filter:blur(8px);
+}
+.oferta-grand > div{
+  padding:clamp(1.75rem,3.5vw,2.5rem) clamp(1rem,2.2vw,1.75rem);
+  position:relative;text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  border-right:1px solid rgba(255,255,255,.08);
+  min-width:0;
+}
+.oferta-grand > div:last-child{border-right:none}
+.oferta-grand > div.featured{
+  background:linear-gradient(180deg,rgba(217,119,87,.12),rgba(217,119,87,.02));
+}
+.oferta-grand-label{
+  font-size:.65rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-bottom:1.1rem;text-align:center;
+}
+.oferta-grand-num{
+  font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:700;
+  color:#fff;letter-spacing:-1.6px;line-height:1;
+  font-feature-settings:"tnum";white-space:nowrap;
+  background:linear-gradient(180deg,#fff,rgba(255,255,255,.65));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.oferta-grand > div.featured .oferta-grand-num{
+  background:linear-gradient(180deg,var(--orange),#f0a07c);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.oferta-grand-sub{
+  font-size:.85rem;color:rgba(255,255,255,.6);
+  margin-top:1rem;line-height:1.55;max-width:28ch;
+}
+@media(max-width:1024px){
+  .oferta-grand-num{font-size:clamp(2rem,4.6vw,3.4rem);letter-spacing:-1.2px}
+}
+@media(max-width:780px){
+  .oferta-grand{grid-template-columns:1fr}
+  .oferta-grand > div{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
+  .oferta-grand > div:last-child{border-bottom:none}
+}
+
+/* Cockpit body — refined card grid below the cinematic top */
+.oferta-cockpit{
+  background:var(--sand);padding:clamp(3rem,7vw,5rem) var(--pad-x);
+  position:relative;
+}
+.oferta-cockpit-inner{max-width:1160px;margin:0 auto}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">
+      <svg viewBox="0 0 266 283" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M187.131 67.9395C193.725 67.9397 199.07 73.2858 199.07 79.8799V92.1074C199.07 98.7015 193.725 104.048 187.131 104.048H149.896V176.593L149.711 177.873C144.481 214.154 113.138 226.03 95.0566 224.152C85.1393 223.122 77.9341 214.247 78.9639 204.33C79.9941 194.413 88.8689 187.207 98.7861 188.237C98.8506 188.242 98.9547 188.246 99.0342 188.246C99.1958 188.246 99.4162 188.238 99.6904 188.214C100.246 188.164 100.949 188.051 101.753 187.841C103.381 187.414 105.153 186.66 106.8 185.532C109.592 183.62 112.597 180.286 113.788 173.838V104.048H76.0811C69.4869 104.048 64.1406 98.7016 64.1406 92.1074V79.8799C64.1406 73.2857 69.4869 67.9395 76.0811 67.9395H187.131Z" fill="#D97757"/>
+        <path d="M232.801 50.836C232.801 41.1275 224.93 33.2572 215.222 33.2572H50.836C41.1275 33.2572 33.2572 41.1275 33.2572 50.836V232.325C33.2572 242.034 41.1275 249.904 50.836 249.904H215.222C224.93 249.904 232.801 242.034 232.801 232.325V50.836ZM266.058 232.325C266.058 260.401 243.298 283.162 215.222 283.162H50.836C22.7601 283.162 0 260.401 0 232.325V50.836C0 22.7601 22.7601 0 50.836 0H215.222C243.298 0 266.058 22.7601 266.058 50.836V232.325Z" fill="#D97757"/>
+      </svg>
+      <span class="nav-logo-text">Juspilot</span>
+    </a>
+    <div class="nav-links">
+      <a href="#quem-somos">Quem Somos</a>
+      <a href="#problema">O Problema</a>
+      <a href="#solucao">A Solução</a>
+      <a href="#mercado">Mercado</a>
+      <a href="#modelo">Modelo</a>
+      <a href="#nota">Nota Conversível</a>
+      <a href="#oferta">A Oferta</a>
+      <a href="#proximos">Próximos Passos</a>
+    </div>
+    <button class="nav-cta" onclick="document.getElementById('proximos').scrollIntoView({behavior:'smooth'})">Entrar em Contato</button>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu" type="button" style="background:none;border:none">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#quem-somos" onclick="toggleMenu()">Quem Somos</a>
+  <a href="#problema" onclick="toggleMenu()">O Problema</a>
+  <a href="#solucao" onclick="toggleMenu()">A Solução</a>
+  <a href="#mercado" onclick="toggleMenu()">Mercado</a>
+  <a href="#modelo" onclick="toggleMenu()">Modelo</a>
+  <a href="#nota" onclick="toggleMenu()">Nota Conversível</a>
+  <a href="#oferta" onclick="toggleMenu()">A Oferta</a>
+  <a href="#proximos" onclick="toggleMenu()">Próximos Passos</a>
+</div>
+
+<!-- SIDE DOTS -->
+<div class="side-dots" id="sideDots">
+  <div class="dot active" data-target="hero" title="Início"></div>
+  <div class="dot" data-target="quem-somos" title="Quem Somos"></div>
+  <div class="dot" data-target="problema" title="O Problema"></div>
+  <div class="dot" data-target="solucao" title="A Solução"></div>
+  <div class="dot" data-target="mercado" title="Mercado"></div>
+  <div class="dot" data-target="modelo" title="Modelo"></div>
+  <div class="dot" data-target="nota" title="Nota Conversível"></div>
+  <div class="dot" data-target="oferta" title="A Oferta"></div>
+  <div class="dot" data-target="proximos" title="Próximos Passos"></div>
+</div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="deco" style="top:12%;left:4%;width:180px;opacity:.18"><img src="juspilot.ai/ELEMENTO%203%20JUSPILOT.svg" alt=""/></div>
+  <div class="deco" style="bottom:10%;right:5%;width:200px;opacity:.22"><img src="juspilot.ai/ELEMENTO%204%20JUSPILOT.svg" alt=""/></div>
+  <div class="hero-inner">
+    <svg class="hero-logo-mark" viewBox="0 0 266 283" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M187.131 67.9395C193.725 67.9397 199.07 73.2858 199.07 79.8799V92.1074C199.07 98.7015 193.725 104.048 187.131 104.048H149.896V176.593L149.711 177.873C144.481 214.154 113.138 226.03 95.0566 224.152C85.1393 223.122 77.9341 214.247 78.9639 204.33C79.9941 194.413 88.8689 187.207 98.7861 188.237C98.8506 188.242 98.9547 188.246 99.0342 188.246C99.1958 188.246 99.4162 188.238 99.6904 188.214C100.246 188.164 100.949 188.051 101.753 187.841C103.381 187.414 105.153 186.66 106.8 185.532C109.592 183.62 112.597 180.286 113.788 173.838V104.048H76.0811C69.4869 104.048 64.1406 98.7016 64.1406 92.1074V79.8799C64.1406 73.2857 69.4869 67.9395 76.0811 67.9395H187.131Z" fill="#D97757"/>
+      <path d="M232.801 50.836C232.801 41.1275 224.93 33.2572 215.222 33.2572H50.836C41.1275 33.2572 33.2572 41.1275 33.2572 50.836V232.325C33.2572 242.034 41.1275 249.904 50.836 249.904H215.222C224.93 249.904 232.801 242.034 232.801 232.325V50.836ZM266.058 232.325C266.058 260.401 243.298 283.162 215.222 283.162H50.836C22.7601 283.162 0 260.401 0 232.325V50.836C0 22.7601 22.7601 0 50.836 0H215.222C243.298 0 266.058 22.7601 266.058 50.836V232.325Z" fill="#D97757"/>
+    </svg>
+    <div class="hero-tag">Proposta de Nota Conversível · Sócio-Investidor Estratégico</div>
+    <h1>Investir hoje. Converter em <em>equity</em> amanhã.</h1>
+    <p class="hero-sub">Proposta de Nota Conversível para entrar na Juspilot, o cockpit jurídico com IA da Octalab, antes do round que precifica a tração consolidada.</p>
+    <div class="hero-badge-row">
+      <span class="hero-pill"><span class="dot"></span>Nota Conversível</span>
+      <span class="hero-pill"><span class="dot"></span>Cap + Desconto</span>
+      <span class="hero-pill"><span class="dot"></span>Conversão automática no próximo round</span>
+    </div>
+    <p class="hero-meta">Octalab · 2026 · Confidencial</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('quem-somos').scrollIntoView({behavior:'smooth'})">Ver a Proposta</button>
+      <button class="btn-outline" onclick="document.getElementById('proximos').scrollIntoView({behavior:'smooth'})">Entrar em Contato</button>
+    </div>
+    <p class="hero-tagline">Clareza &nbsp;·&nbsp; Controle &nbsp;·&nbsp; Confiança</p>
+  </div>
+</section>
+
+<!-- ═══════════ QUEM SOMOS ═══════════ -->
+<section id="quem-somos" class="sec off">
+<div class="deco mid-right" style="width:240px;opacity:.12;right:-80px"><img src="juspilot.ai/ELEMENTO%201%20JUSPILOT.svg" alt=""/></div>
+<div class="inner">
+  <div class="sec-label">Parte 1: Quem Somos</div>
+  <h2 class="sec-title">Produto real, equipe comprovada</h2>
+  <p class="sec-lead" style="margin-bottom:3rem">A Juspilot não é um MVP. É um produto em produção, construído por uma equipe com histórico de execução em SaaS B2B.</p>
+
+  <div class="grid-2">
+    <div>
+      <h3 style="font-size:1.35rem;font-weight:700;letter-spacing:-.5px;margin-bottom:1.25rem">Octalab</h3>
+      <p style="font-size:.93rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem">Holding de produtos digitais com a tese de construir software vertical com IA, profundo em domínios complexos. A Juspilot é o primeiro produto vertical e a aposta principal de 2026.</p>
+      <div class="check-list">
+        <div class="check-item"><span class="check-icon">✓</span><span>Time fundador com engenharia de produto, IA aplicada e go-to-market em SaaS B2B</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Stack moderno e proprietário: Next.js 16, Supabase, Vercel AI SDK v6, RAG híbrido com pgvector e reranking Cohere</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Monorepo Turborepo com plataforma, site institucional e app mobile já em produção</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Bootstrap até este ponto, sem dependência de investimento externo para operar</span></div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:1.35rem;font-weight:700;letter-spacing:-.5px;margin-bottom:1.25rem">Juspilot</h3>
+      <p style="font-size:.93rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem">Plataforma jurídica completa com IA contextual para escritórios e advogados autônomos. Não é "mais um chatbot". É um cockpit operacional, com casos, minutas, CRM, contratos, jurisprudência e agentes de IA integrados.</p>
+      <div class="grid-2" style="gap:1rem;margin-top:.5rem">
+        <div class="card orange-accent" style="padding:1.25rem">
+          <div class="card-label">Web App</div>
+          <div style="font-size:.9rem;font-weight:600">app.juspilot.ai</div>
+        </div>
+        <div class="card orange-accent" style="padding:1.25rem">
+          <div class="card-label">Mobile</div>
+          <div style="font-size:.9rem;font-weight:600">iOS + Android (Expo)</div>
+        </div>
+        <div class="card orange-accent" style="padding:1.25rem;grid-column:span 2">
+          <div class="card-label">White-label</div>
+          <div style="font-size:.9rem;font-weight:600">Portal *.juspilot.co para clientes finais</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ O PROBLEMA ═══════════ -->
+<section id="problema" class="sec white">
+<div class="inner">
+  <div class="sec-label">Parte 2: O Problema</div>
+  <h2 class="sec-title">O advogado administra mais do que advoga</h2>
+  <p class="sec-lead" style="margin-bottom:3rem">Escritórios operam com 4 a 6 ferramentas desconectadas. Nenhuma delas conhece o caso. O resultado é retrabalho, prazo perdido e cliente mal atendido.</p>
+
+  <div class="grid-2" style="gap:4rem;align-items:start">
+    <div>
+      <div class="scenario">
+        <div class="scenario-tag">Cenário real: escritório trabalhista com 80 processos ativos</div>
+        <h5>Uma decisão nova do TST muda a tese de 12 casos</h5>
+        <p>Com ferramentas tradicionais, o advogado descobre na véspera da audiência, ou depois. Com a Juspilot, o escritório recebe alerta automático com análise de impacto por caso, no momento em que o acórdão é indexado.</p>
+        <span class="scenario-metric">Tempo de resposta: de dias para minutos</span>
+      </div>
+      <div class="scenario">
+        <div class="scenario-tag">Cenário real: causa de dano moral</div>
+        <h5>Gerar petição inicial leva horas de trabalho técnico</h5>
+        <p>O advogado reúne fatos, pesquisa teses do STJ, redige e revisa. Com a Juspilot, ele clica em "Gerar Petição". Em 90 segundos, recebe a minuta estruturada com causa de pedir baseada nos documentos do caso, teses aplicáveis e checklist de juntada.</p>
+        <span class="scenario-metric">Redução de 4h para &lt;5 min na primeira versão</span>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-size:1rem;font-weight:600;margin-bottom:1.25rem">Por que as ferramentas atuais não resolvem</h4>
+      <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Aspecto</th><th>Hoje</th><th>Juspilot</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="col-key">IA</td><td class="col-bad">Chatbot genérico sem contexto do caso</td><td class="col-good">Agente que conhece o processo, o cliente e a tese</td></tr>
+          <tr><td class="col-key">Integração</td><td class="col-bad">4 a 6 ferramentas separadas</td><td class="col-good">Tudo em um lugar</td></tr>
+          <tr><td class="col-key">Jurisprudência</td><td class="col-bad">Busca manual, risco de citação falsa</td><td class="col-good">RAG com base curada e zero alucinação</td></tr>
+          <tr><td class="col-key">Contratos</td><td class="col-bad">Ferramenta externa, sem rastreabilidade</td><td class="col-good">Assinatura nativa com audit trail em hash chain</td></tr>
+          <tr><td class="col-key">Adaptação</td><td class="col-bad">Processos fixos</td><td class="col-good">Agentes configurados pelo próprio escritório</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ A SOLUÇÃO ═══════════ -->
+<section id="solucao" class="sec sand">
+<div class="deco" style="top:60px;left:-60px;width:200px;opacity:.14"><img src="juspilot.ai/ELEMENTO%204%20JUSPILOT.svg" alt=""/></div>
+<div class="deco" style="bottom:40px;right:-40px;width:160px;opacity:.16"><img src="juspilot.ai/ELEMENTO%203%20JUSPILOT.svg" alt=""/></div>
+<div class="inner">
+  <div class="sec-label">Parte 3: A Solução</div>
+  <h2 class="sec-title">8 módulos, uma plataforma, um contexto</h2>
+  <p class="sec-lead" style="margin-bottom:3rem">Cada módulo é completo por si só. Integrados, tornam-se um sistema de inteligência que aprende com os dados do escritório.</p>
+
+  <div class="module-list">
+    <div class="module-item gsap-fade">
+      <span class="module-num">01</span>
+      <div><h5>Gestão de Casos</h5><p>Kanban com SLA, alertas de prazo e timeline automática por processo</p></div>
+    </div>
+    <div class="module-item gsap-fade">
+      <span class="module-num">02</span>
+      <div><h5>Agentes de IA Personalizados</h5><p>Criação sem código, suporte a múltiplos providers (OpenAI, Anthropic, Google, DeepSeek)</p></div>
+    </div>
+    <div class="module-item gsap-fade">
+      <span class="module-num">03</span>
+      <div><h5>Minutas Inteligentes</h5><p>Geração contextual no editor Tiptap, alimentada pelos documentos do caso</p></div>
+    </div>
+    <div class="module-item gsap-fade">
+      <span class="module-num">04</span>
+      <div><h5>Jurisprudência Semântica</h5><p>Base curada STJ/STF com busca híbrida com pgvector + FTS + reranking Cohere</p></div>
+    </div>
+    <div class="module-item gsap-fade">
+      <span class="module-num">05</span>
+      <div><h5>CRM Jurídico</h5><p>Clientes vinculados a casos, contratos e histórico de atendimento</p></div>
+    </div>
+    <div class="module-item gsap-fade">
+      <span class="module-num">06</span>
+      <div><h5>Contratos com Assinatura Eletrônica</h5><p>Audit trail com hash chain, validade jurídica e rastreabilidade completa</p></div>
+    </div>
+    <div class="module-item gsap-fade">
+      <span class="module-num">07</span>
+      <div><h5>Data Room Seguro</h5><p>Compartilhamento de documentos com permissões granulares por processo</p></div>
+    </div>
+    <div class="module-item gsap-fade">
+      <span class="module-num">08</span>
+      <div><h5>Chat Universal com Contexto</h5><p>Assistente ativo em qualquer tela, com acesso ao histórico completo do caso</p></div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:4rem"></div>
+
+  <h3 style="font-size:1.25rem;font-weight:700;letter-spacing:-.4px;margin-bottom:2rem">Diferenciais técnicos</h3>
+  <div class="grid-3">
+    <div class="card orange-accent gsap-fade">
+      <div class="card-label">Precisão</div>
+      <h4>RAG Híbrido com Reranking</h4>
+      <p>Semântica (pgvector) + full-text (Postgres FTS) + reranking Cohere. Ganho médio de 25 a 35% de precisão em relação a busca vetorial pura.</p>
+    </div>
+    <div class="card orange-accent gsap-fade">
+      <div class="card-label">Confiabilidade</div>
+      <h4>Zero Alucinação em Jurisprudência</h4>
+      <p>A IA só cita precedentes existentes na base indexada. Mais de 1.500 temas STJ/STF indexados com sync automático.</p>
+    </div>
+    <div class="card orange-accent gsap-fade">
+      <div class="card-label">Flexibilidade</div>
+      <h4>Agentes Configuráveis pelo Escritório</h4>
+      <p>Cada banca define seus fluxos de trabalho. O sistema se adapta, não o contrário. Suporte a multi-provider por agente.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ MERCADO ═══════════ -->
+<section id="mercado" class="sec dark">
+<div class="deco" style="top:40px;right:-80px;width:280px;opacity:.10"><img src="juspilot.ai/ELEMENTO%202%20JUSPILOT.svg" alt=""/></div>
+<div class="deco" style="bottom:60px;left:-90px;width:200px;opacity:.08"><img src="juspilot.ai/ELEMENTO%203%20JUSPILOT.svg" alt=""/></div>
+<div class="inner">
+  <div class="sec-label" style="color:var(--orange)">Parte 4 · Mercado e Oportunidade</div>
+
+  <!-- HERO da seção: headline grande + funil TAM/SAM/SOM -->
+  <div class="market-hero">
+    <div class="market-hero-text">
+      <h2>Uma janela de <em>18 a 36 meses</em> que não se repete</h2>
+      <p>O jurídico está no mesmo ponto onde o contábil estava em 2019, o de RH em 2017 e o de saúde em 2015, antes da automação virar obrigação. Dessa vez, a janela fecha mais rápido, porque a IA já é commodity. Quem fincar bandeira primeiro vira default.</p>
+    </div>
+    <div class="tam-stack" aria-label="Tamanho de mercado">
+      <div class="tam-row tam">
+        <span class="tag">TAM</span>
+        <span class="desc">Total de software jurídico no Brasil</span>
+        <span class="val">R$ 4,2 bi</span>
+      </div>
+      <div class="tam-row sam">
+        <span class="tag">SAM</span>
+        <span class="desc">Bancas de 3 a 30 advogados, segmento prioritário</span>
+        <span class="val">R$ 1,1 bi</span>
+      </div>
+      <div class="tam-row som">
+        <span class="tag">SOM</span>
+        <span class="desc">Captura realista da Juspilot em 5 anos</span>
+        <span class="val">R$ 180 M</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIG STATS -->
+  <div class="grid-4" style="margin-bottom:clamp(2.5rem,5vw,3.5rem)">
+    <div class="stat-block gsap-fade">
+      <div class="stat-num">1,3 M</div>
+      <div class="stat-label">Advogados ativos no Brasil (OAB)</div>
+      <span class="stat-trend">↑ +3,2% a.a.</span>
+    </div>
+    <div class="stat-block gsap-fade">
+      <div class="stat-num">&lt;5%</div>
+      <div class="stat-label">Penetração de software jurídico moderno (com IA)</div>
+      <span class="stat-trend">Mercado virgem</span>
+    </div>
+    <div class="stat-block gsap-fade">
+      <div class="stat-num">60×</div>
+      <div class="stat-label">Queda no custo de IA por token nos últimos 24 meses</div>
+      <span class="stat-trend">↓ Margem expandindo</span>
+    </div>
+    <div class="stat-block gsap-fade">
+      <div class="stat-num">3 a 30</div>
+      <div class="stat-label">Advogados por escritório no segmento alvo prioritário</div>
+      <span class="stat-trend">~120 mil bancas</span>
+    </div>
+  </div>
+
+  <!-- GRÁFICOS -->
+  <div class="grid-2" style="gap:1.5rem;margin-top:1rem">
+    <div class="chart-wrap gsap-fade" style="background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)">
+      <h5 style="color:rgba(255,255,255,.8)">Custo de IA por 1M tokens (USD): 2022 → 2026</h5>
+      <div class="chart-canvas-wrap"><canvas id="chartAICost"></canvas></div>
+    </div>
+    <div class="chart-wrap gsap-fade" style="background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)">
+      <h5 style="color:rgba(255,255,255,.8)">Mercado-alvo por porte de escritório</h5>
+      <div class="chart-canvas-wrap"><canvas id="chartMarket"></canvas></div>
+    </div>
+  </div>
+
+  <!-- TIMING WINDOW -->
+  <div class="timing-window gsap-fade">
+    <div class="timing-window-head">
+      <div class="big">2024 a 2027</div>
+      <div class="label">Janela de adoção. A partir de 2027, o setor estará repartido entre 2 ou 3 plataformas dominantes.</div>
+    </div>
+    <div class="timing-track">
+      <div class="timing-bar">
+        <div class="timing-bar-fill"></div>
+        <div class="timing-now-pin"></div>
+        <div class="timing-now-label">Estamos aqui · 2026</div>
+      </div>
+      <div class="timing-bar-marks">
+        <span class="timing-marker">2022 · IA emerge</span>
+        <span class="timing-marker">2028 · Mercado consolidado</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider dark" style="margin-top:clamp(2.5rem,5vw,3.5rem)"></div>
+
+  <!-- VERTICAIS ANÁLOGAS -->
+  <h3 style="font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;letter-spacing:-.5px;color:#fff;margin-bottom:.5rem">Quem chegou primeiro em verticais análogas</h3>
+  <p style="color:rgba(255,255,255,.55);font-size:.95rem;max-width:62ch;line-height:1.65;margin-bottom:1.5rem">Em todo vertical SaaS B2B, a primeira plataforma a consolidar produto + distribuição capturou 40-60% do mercado. O jurídico vai seguir o mesmo padrão.</p>
+  <div class="analog-row">
+    <div class="analog-card">
+      <div class="vertical">Contabilidade · 2019</div>
+      <h6>Contabilizei</h6>
+      <div class="desc">Software contábil com IA básica. Capturou ~50% das micro/pequenas em 4 anos.</div>
+      <span class="winner">R$ 4 bi valuation</span>
+    </div>
+    <div class="analog-card">
+      <div class="vertical">RH · 2017</div>
+      <h6>Gupy / Sólides</h6>
+      <div class="desc">Recrutamento e gestão com automação. Dominância em médias empresas.</div>
+      <span class="winner">Unicórnios setoriais</span>
+    </div>
+    <div class="analog-card">
+      <div class="vertical">Saúde · 2015</div>
+      <h6>iClinic / Doctoralia</h6>
+      <div class="desc">SaaS para clínicas. Vendido para players globais; setor consolidado.</div>
+      <span class="winner">Exits R$ 1 bi+</span>
+    </div>
+    <div class="analog-card" style="border-color:var(--orange);background:rgba(217,119,87,.06)">
+      <div class="vertical" style="color:var(--orange)">Jurídico · 2026</div>
+      <h6 style="color:#fff">Juspilot</h6>
+      <div class="desc">A janela está aberta. Produto pronto, distribuição em construção.</div>
+      <span class="winner" style="background:var(--orange);color:#fff;border-color:var(--orange)">A próxima vaga</span>
+    </div>
+  </div>
+
+  <div class="divider dark" style="margin-top:clamp(2.5rem,5vw,3.5rem)"></div>
+
+  <!-- POR QUE AGORA -->
+  <h3 style="font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;letter-spacing:-.5px;color:#fff;margin-bottom:1.5rem">Os 4 vetores convergindo agora</h3>
+  <div class="grid-2">
+    <div class="check-list">
+      <div class="check-item" style="color:rgba(255,255,255,.85)"><span class="check-icon">✓</span><span><strong style="color:#fff">Tecnologia madura.</strong> Modelos de linguagem atingiram nível institucional em raciocínio jurídico. Não é mais experimento.</span></div>
+      <div class="check-item" style="color:rgba(255,255,255,.85)"><span class="check-icon">✓</span><span><strong style="color:#fff">Pressão regulatória.</strong> CNJ, tribunais e LGPD empurram digitalização. Cliente final exige resposta em horas, não dias.</span></div>
+    </div>
+    <div class="check-list">
+      <div class="check-item" style="color:rgba(255,255,255,.85)"><span class="check-icon">✓</span><span><strong style="color:#fff">Incumbentes travados.</strong> Astrea, Themis e Projuris carregam dívida técnica de mais de 10 anos. Refazer com IA é caro e arriscado.</span></div>
+      <div class="check-item" style="color:rgba(255,255,255,.85)"><span class="check-icon">✓</span><span><strong style="color:#fff">Custo viável.</strong> IA por token caiu 60×. Margem unitária permite SaaS lucrativo desde o primeiro cliente.</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ MODELO DE NEGÓCIO ═══════════ -->
+<section id="modelo" class="sec white">
+<div class="deco" style="top:80px;left:-80px;width:200px;opacity:.13"><img src="juspilot.ai/ELEMENTO%201%20JUSPILOT.svg" alt=""/></div>
+<div class="inner">
+  <div class="sec-label">Parte 5: Modelo de Negócio</div>
+  <h2 class="sec-title">Receita recorrente com expansão por uso</h2>
+  <p class="sec-lead" style="margin-bottom:3rem">Assinatura SaaS como base + consumo de créditos de IA como expansão natural. Quanto mais o escritório usa, maior o valor entregue e o MRR.</p>
+
+  <div class="grid-2" style="align-items:start;gap:4rem">
+    <div>
+      <div class="compare-table-wrap">
+      <table class="pricing-table">
+        <thead><tr><th>Plano</th><th>Preço</th><th>Créditos de IA / mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="pricing-plan">Free</span></td>
+            <td>Gratuito</td>
+            <td>50</td>
+          </tr>
+          <tr class="pricing-highlight">
+            <td><span class="pricing-plan" style="color:var(--orange)">Pro</span></td>
+            <td>R$ 500 / mês<br><small style="color:var(--muted)">R$ 4.800 / ano (20% off)</small></td>
+            <td>10.000<br><small style="color:var(--muted)">~10M tokens / mês</small></td>
+          </tr>
+          <tr>
+            <td><span class="pricing-plan">Enterprise</span></td>
+            <td>Sob consulta</td>
+            <td>100.000+</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="pull-quote" style="margin-top:1.5rem">1 crédito ≈ 1.000 tokens. O plano Pro cobre <strong>dezenas de minutas, pesquisas e análises por dia</strong>, e o escritório nunca atinge o teto em uso normal.</div>
+    </div>
+    <div>
+      <div class="chart-wrap gsap-fade">
+        <h5>Vetores de receita: projeção de composição (ano 2)</h5>
+        <div class="chart-canvas-wrap" style="height:240px"><canvas id="chartRevenue"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:4rem"></div>
+
+  <h3 style="font-size:1.15rem;font-weight:700;letter-spacing:-.4px;margin-bottom:1.5rem">Estado atual da plataforma</h3>
+  <div class="grid-2" style="gap:1.5rem">
+    <div>
+      <div class="check-list">
+        <div class="check-item"><span class="check-icon">✓</span><span>Plataforma web completa com todos os 8 módulos operacionais</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>App mobile iOS + Android com Expo / React Native</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Portal white-label para clientes finais</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Integração STJ/STF com sync automático (Precedentes Qualificados, Espelhos, Repercussão Geral)</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="check-list">
+        <div class="check-item"><span class="check-icon">✓</span><span>Sistema de RAG com 1.500+ temas indexados e crescendo</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Billing Stripe com créditos e onboarding completo</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Multi-tenant com Row-Level Security, impersonation admin e auditoria completa</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span>Clientes reais em uso. Não é um pitch, é um produto em produção</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="pull-quote">A engenharia <strong>não é o gargalo</strong>. O gargalo é a distribuição, e é exatamente o que buscamos no sócio estratégico.</div>
+
+
+</div>
+</section>
+
+<!-- ═══════════ NOTA CONVERSÍVEL ═══════════ -->
+<section id="nota" class="sec off">
+<div class="deco" style="top:60px;right:-90px;width:240px;opacity:.10"><img src="juspilot.ai/ELEMENTO%201%20JUSPILOT.svg" alt=""/></div>
+<div class="deco" style="bottom:80px;left:-80px;width:200px;opacity:.10"><img src="juspilot.ai/ELEMENTO%202%20JUSPILOT.svg" alt=""/></div>
+<div class="inner">
+  <span class="eyebrow">Parte 6 · Estrutura do Investimento</span>
+  <h2 class="sec-title">Nota Conversível, em uma página</h2>
+  <p class="sec-lead" style="margin-bottom:2.5rem">Nossa intenção é fechar via Mútuo Conversível: capital agora, conversão automática em equity no próximo round, com cap e desconto que protegem o investidor. Documento único, fechamento em 30 a 60 dias, custos legais reduzidos.</p>
+
+  <!-- Term sheet executivo -->
+  <div class="termsheet">
+    <div class="termsheet-head">
+      <div class="termsheet-title">
+        <span class="termsheet-doc">Term Sheet · Mútuo Conversível</span>
+        <span class="termsheet-status">Não vinculante · Indicativo</span>
+      </div>
+      <div class="termsheet-id">JP-2026 · 001</div>
+    </div>
+    <div class="termsheet-body">
+      <div class="ts-row"><span class="ts-k">Instrumento</span><span class="ts-v">Mútuo Conversível em participação societária (Lei Complementar 182/21)</span></div>
+      <div class="ts-row"><span class="ts-k">Aporte alvo</span><span class="ts-v">R$ 1,5 a 3 milhões</span></div>
+      <div class="ts-row"><span class="ts-k">Valuation Cap</span><span class="ts-v">A definir em term sheet, faixa de mercado para o estágio</span></div>
+      <div class="ts-row"><span class="ts-k">Desconto na conversão</span><span class="ts-v">15% a 25% sobre o preço do round qualificado</span></div>
+      <div class="ts-row"><span class="ts-k">Round qualificado</span><span class="ts-v">Captação primária mínima de R$ 5 milhões</span></div>
+      <div class="ts-row"><span class="ts-k">Maturidade</span><span class="ts-v">24 a 36 meses, com conversão por valuation pré acordado caso não haja round</span></div>
+      <div class="ts-row"><span class="ts-k">Equity alvo na conversão</span><span class="ts-v featured">Equivalente a aproximadamente 10% da Juspilot</span></div>
+      <div class="ts-row"><span class="ts-k">Governança imediata</span><span class="ts-v">Assento no board e direitos de informação a partir da assinatura</span></div>
+      <div class="ts-row"><span class="ts-k">Direitos pós conversão</span><span class="ts-v">Tag along, anti diluição padrão e drag along em evento de saída</span></div>
+      <div class="ts-row"><span class="ts-k">Vesting estratégico</span><span class="ts-v">Cliff e vesting alinhados à entrega de distribuição via rede ativa</span></div>
+      <div class="ts-row"><span class="ts-k">Prazo de fechamento</span><span class="ts-v">30 a 60 dias da assinatura do term sheet</span></div>
+    </div>
+    <div class="termsheet-foot">
+      Termos indicativos para discussão. Documento final será negociado em sede de term sheet, com assessoria jurídica de ambos os lados.
+    </div>
+  </div>
+
+  <!-- 3 cards de intenção (por que assim) -->
+  <div class="intent-grid">
+    <div class="intent-card">
+      <div class="intent-num">01</div>
+      <h4>Velocidade compatível com a janela de mercado</h4>
+      <p>O fechamento em 30 a 60 dias permite que o sócio entre no board e comece a abrir portas ainda neste trimestre. Equity direto levaria 4 a 6 meses entre due diligence, valuation e cap table.</p>
+    </div>
+    <div class="intent-card featured">
+      <div class="intent-num">02</div>
+      <h4>Precificação validada pelo mercado</h4>
+      <p>O valuation é definido pelo investidor do round seguinte, não em uma negociação bilateral hoje. O cap protege contra surpresa, o desconto recompensa o risco de entrar antes.</p>
+    </div>
+    <div class="intent-card">
+      <div class="intent-num">03</div>
+      <h4>Alinhamento com entrega de distribuição</h4>
+      <p>O vesting estratégico vincula a participação à entrega da rede que o sócio traz. Não compramos um nome no cap table, contratamos um motor de crescimento.</p>
+    </div>
+  </div>
+
+  <!-- Trust row -->
+  <div class="trust-row">
+    <span class="label">Instrumento padrão de venture no Brasil e no exterior</span>
+    <span class="item">Mútuo Conversível BR</span>
+    <span class="item">·</span>
+    <span class="item">SAFE (Y Combinator)</span>
+    <span class="item">·</span>
+    <span class="item">KISS (500 Startups)</span>
+    <span class="item">·</span>
+    <span class="item">Lei Complementar 182/21</span>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ A OFERTA — cinematic top + cockpit body ═══════════ -->
+<section id="oferta">
+  <!-- ATO 1: cinematic dark hero -->
+  <div class="oferta-cinema">
+    <div class="oferta-cinema-inner">
+      <span class="oferta-eyebrow">Parte 7 · A Oferta</span>
+      <h2 class="oferta-headline">Capital, rede e <em>conversão</em><br/>em um único instrumento.</h2>
+      <p class="oferta-deck">O jurídico é mercado de relacionamento. Sócios de escritório compram de quem confiam. Por isso, a oferta combina <strong style="color:#fff">capital, rede ativa e upside contratual</strong> em uma Nota Conversível desenhada para alinhar incentivos antes do round que precifica a tração consolidada.</p>
+
+      <!-- Os 3 números que importam, em escala grandiosa -->
+      <div class="oferta-grand">
+        <div>
+          <div class="oferta-grand-label">Aporte alvo</div>
+          <div class="oferta-grand-num">R$ 1,5 a 3M</div>
+          <div class="oferta-grand-sub">Faixa orientativa, ajustada ao papel estratégico do sócio.</div>
+        </div>
+        <div class="featured">
+          <div class="oferta-grand-label">Equity-alvo na conversão</div>
+          <div class="oferta-grand-num">~10%</div>
+          <div class="oferta-grand-sub">Participação equivalente após cap + desconto no próximo round.</div>
+        </div>
+        <div>
+          <div class="oferta-grand-label">Desconto na conversão</div>
+          <div class="oferta-grand-num">15 a 25%</div>
+          <div class="oferta-grand-sub">Sobre o preço do round qualificado, recompensando entrada antecipada.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:clamp(2rem,4vw,3rem);display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;font-size:.78rem;color:rgba(255,255,255,.55)">
+        <span style="display:inline-flex;align-items:center;gap:.4rem"><span style="width:6px;height:6px;border-radius:50%;background:var(--orange)"></span>Mútuo Conversível BR</span>
+        <span aria-hidden="true">·</span>
+        <span>Conversão automática no próximo round</span>
+        <span aria-hidden="true">·</span>
+        <span>Assento no board imediato</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATO 2: cockpit body — termos detalhados -->
+  <div class="oferta-cockpit">
+    <div class="deco" style="top:40px;right:-90px;width:240px;opacity:.10"><img src="juspilot.ai/ELEMENTO%202%20JUSPILOT.svg" alt=""/></div>
+    <div class="oferta-cockpit-inner">
+
+  <div class="grid-2" style="align-items:start;gap:3rem;margin-top:0">
+    <div>
+      <div class="profile-box">
+        <h4>O que o sócio estratégico entrega</h4>
+        <div class="check-list">
+          <div class="check-item"><span class="check-icon">✓</span><span><strong>Rede ativa.</strong> Apresentação direta a sócios gestores de escritórios alvo.</span></div>
+          <div class="check-item"><span class="check-icon">✓</span><span><strong>Endosso institucional.</strong> Voz crível em OABs, comissões e eventos do setor.</span></div>
+          <div class="check-item"><span class="check-icon">✓</span><span><strong>Curadoria de produto.</strong> Direção sobre o que importa para quem realmente paga.</span></div>
+          <div class="check-item"><span class="check-icon">✓</span><span><strong>Casos âncora.</strong> Primeiros escritórios de referência fechados pela rede do sócio.</span></div>
+          <div class="check-item"><span class="check-icon">✓</span><span><strong>Conselho estratégico.</strong> Assento no board e acompanhamento de longo prazo.</span></div>
+        </div>
+      </div>
+      <div class="pull-quote" style="margin-top:1.5rem">A oferta é <strong>convidativa, não fechada</strong>. Buscamos o sócio certo. Os termos finais saem da conversa.</div>
+    </div>
+    <div>
+      <div class="profile-box">
+        <h4>Perfil do sócio ideal</h4>
+        <div class="check-list">
+          <div class="check-item"><span class="check-icon">✓</span><span>Sócio ou ex sócio de escritório de médio ou grande porte.</span></div>
+          <div class="check-item"><span class="check-icon">✓</span><span>Reputação institucional reconhecida. Alguém cujo nome abre porta.</span></div>
+          <div class="check-item"><span class="check-icon">✓</span><span>Visão clara de que IA vai redesenhar o setor nos próximos 5 anos.</span></div>
+          <div class="check-item"><span class="check-icon">✓</span><span>Disposição para dedicar tempo real ao board e à distribuição ativa.</span></div>
+        </div>
+        <div style="margin-top:1.5rem">
+          <h5 style="font-size:.82rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#c0392b;margin-bottom:.75rem">O que não buscamos</h5>
+          <div class="cross-list">
+            <div class="cross-item"><span class="cross-icon">✗</span><span>Investidor financeiro passivo, sem mão na massa.</span></div>
+            <div class="cross-item"><span class="cross-icon">✗</span><span>Sócio que queira operar a tecnologia. Esse é o trabalho da Octalab.</span></div>
+            <div class="cross-item"><span class="cross-icon">✗</span><span>Acordo de distribuição puro, sem alinhamento via equity.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:4rem"></div>
+
+  <h3 style="font-size:1.15rem;font-weight:700;letter-spacing:-.4px;margin-bottom:1.5rem">Estratégia de distribuição: os 4 motores</h3>
+  <div class="grid-4">
+    <div class="card gsap-fade">
+      <div class="card-label">Motor 1</div>
+      <h4>Indicação direta</h4>
+      <p>Visitas presenciais a 30 a 50 escritórios âncora no primeiro ano, via rede do sócio.</p>
+    </div>
+    <div class="card gsap-fade">
+      <div class="card-label">Motor 2</div>
+      <h4>Eventos institucionais</h4>
+      <p>OAB seccionais, congressos por área (trabalhista, tributário, empresarial), painéis com o sócio como referência.</p>
+    </div>
+    <div class="card gsap-fade">
+      <div class="card-label">Motor 3</div>
+      <h4>Parcerias com associações</h4>
+      <p>Acordos com AASP, IASP, IBA e comissões temáticas, com desconto institucional e integração de marca.</p>
+    </div>
+    <div class="card gsap-fade">
+      <div class="card-label">Motor 4</div>
+      <h4>Programa de embaixadores</h4>
+      <p>Bancas âncora como referência pública, com estudo de caso e indicação remunerada.</p>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:3rem"></div>
+
+  <!-- GRÁFICO DE CRESCIMENTO PROJETADO -->
+  <h3 style="font-size:1.15rem;font-weight:700;letter-spacing:-.4px;margin-bottom:1.5rem">Projeção de crescimento de escritórios ativos</h3>
+  <div class="chart-wrap gsap-fade">
+    <h5>Escritórios ativos por trimestre, em base conservadora após o aporte</h5>
+    <div class="chart-canvas-wrap" style="height:220px"><canvas id="chartGrowth"></canvas></div>
+  </div>
+    </div><!-- /.oferta-cockpit-inner -->
+  </div><!-- /.oferta-cockpit -->
+</section>
+
+<!-- ═══════════ PRÓXIMOS PASSOS ═══════════ -->
+<section id="proximos" class="sec white">
+<div class="deco" style="bottom:40px;right:-50px;width:180px;opacity:.14"><img src="juspilot.ai/ELEMENTO%203%20JUSPILOT.svg" alt=""/></div>
+<div class="inner">
+  <span class="eyebrow">Parte 8 · Próximos Passos</span>
+  <h2 class="sec-title">Do café ao closing em 60 a 90 dias</h2>
+  <p class="sec-lead" style="margin-bottom:3rem">Um processo estruturado para alinhar expectativas, validar o produto e fechar com segurança.</p>
+
+  <div class="grid-2" style="align-items:start;gap:4rem">
+    <div>
+      <div class="steps">
+        <div class="step gsap-fade">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h5>Reunião de alinhamento estratégico (1h)</h5>
+            <p>Apresentação ao vivo, sessão de perguntas e validação de tese de parte a parte.</p>
+          </div>
+        </div>
+        <div class="step gsap-fade">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h5>Demonstração personalizada (1h)</h5>
+            <p>Caso real do escritório do investidor rodando na plataforma. Sem demonstração genérica.</p>
+          </div>
+        </div>
+        <div class="step gsap-fade">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h5>Acesso completo à plataforma (30 dias)</h5>
+            <p>Uso real para validação prática, antes de qualquer compromisso financeiro.</p>
+          </div>
+        </div>
+        <div class="step gsap-fade">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h5>Data room técnico e financeiro</h5>
+            <p>Métricas, contratos, código e composição do time, com transparência total.</p>
+          </div>
+        </div>
+        <div class="step gsap-fade">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <h5>Term sheet</h5>
+            <p>Alinhamento de números e direitos, com assessoria jurídica de ambos os lados.</p>
+          </div>
+        </div>
+        <div class="step gsap-fade">
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <h5>Due diligence e closing</h5>
+            <p>Processo completo até a assinatura e a integração do sócio ao board.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-size:1rem;font-weight:600;margin-bottom:1.5rem">Por que fechar agora</h4>
+      <div class="urgency-row" style="grid-template-columns:1fr;gap:1rem;margin-top:0">
+        <div class="urgency-item gsap-fade">
+          <h5>A janela de adoção está abrindo este ano</h5>
+          <p>Escritórios que adotarem IA agora vão criar vantagem operacional de 2 a 3 anos sobre quem esperar.</p>
+        </div>
+        <div class="urgency-item gsap-fade">
+          <h5>Troca de stack não é reversível</h5>
+          <p>Cada trimestre de atraso é um escritório fechado por um concorrente. Não há volta fácil quando o cliente já trocou de plataforma.</p>
+        </div>
+        <div class="urgency-item gsap-fade">
+          <h5>A Octalab vai construir com ou sem aporte</h5>
+          <p>A questão é com qual velocidade. Os 10% de hoje têm matemática muito diferente dos 10% após a tração consolidada.</p>
+        </div>
+        <div class="urgency-item gsap-fade">
+          <h5>O sócio certo multiplica a velocidade</h5>
+          <p>Capital de fundo não compra credibilidade em mercado de relacionamento. Esse é o diferencial que buscamos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ CLOSING ═══════════ -->
+<section id="closing">
+  <div class="deco" style="top:10%;left:5%;width:200px;opacity:.14"><img src="juspilot.ai/ELEMENTO%204%20JUSPILOT.svg" alt=""/></div>
+  <div class="deco" style="bottom:10%;right:6%;width:180px;opacity:.16"><img src="juspilot.ai/ELEMENTO%203%20JUSPILOT.svg" alt=""/></div>
+  <div class="inner">
+    <svg style="height:50px;width:auto;margin:0 auto 2rem;display:block" viewBox="0 0 266 283" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M187.131 67.9395C193.725 67.9397 199.07 73.2858 199.07 79.8799V92.1074C199.07 98.7015 193.725 104.048 187.131 104.048H149.896V176.593L149.711 177.873C144.481 214.154 113.138 226.03 95.0566 224.152C85.1393 223.122 77.9341 214.247 78.9639 204.33C79.9941 194.413 88.8689 187.207 98.7861 188.237C98.8506 188.242 98.9547 188.246 99.0342 188.246C99.1958 188.246 99.4162 188.238 99.6904 188.214C100.246 188.164 100.949 188.051 101.753 187.841C103.381 187.414 105.153 186.66 106.8 185.532C109.592 183.62 112.597 180.286 113.788 173.838V104.048H76.0811C69.4869 104.048 64.1406 98.7016 64.1406 92.1074V79.8799C64.1406 73.2857 69.4869 67.9395 76.0811 67.9395H187.131Z" fill="#D97757"/>
+      <path d="M232.801 50.836C232.801 41.1275 224.93 33.2572 215.222 33.2572H50.836C41.1275 33.2572 33.2572 41.1275 33.2572 50.836V232.325C33.2572 242.034 41.1275 249.904 50.836 249.904H215.222C224.93 249.904 232.801 242.034 232.801 232.325V50.836ZM266.058 232.325C266.058 260.401 243.298 283.162 215.222 283.162H50.836C22.7601 283.162 0 260.401 0 232.325V50.836C0 22.7601 22.7601 0 50.836 0H215.222C243.298 0 266.058 22.7601 266.058 50.836V232.325Z" fill="#D97757"/>
+    </svg>
+    <h2>Construir a infraestrutura de IA do direito brasileiro.</h2>
+    <p>Junto a quem o setor já respeita.</p>
+    <button class="btn-primary" style="margin:0 auto 3rem;display:block" onclick="window.location.href='mailto:gustavofs.me@gmail.com'">Solicitar Reunião</button>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-label">Empresa</div>
+        <div class="contact-val">Octalab · Juspilot</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Fundador</div>
+        <div class="contact-val">Gustavo Souza</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">E-mail</div>
+        <div class="contact-val">gustavofs.me@gmail.com</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Plataforma</div>
+        <div class="contact-val">app.juspilot.ai</div>
+      </div>
+    </div>
+    <p style="font-size:.72rem;color:rgba(255,255,255,.25);letter-spacing:.12em;text-transform:uppercase;margin-top:3rem">Clareza &nbsp;·&nbsp; Controle &nbsp;·&nbsp; Confiança</p>
+  </div>
+</section>
+
+<script>
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+
+/* ── HERO ENTRANCE ───────────────────────────── */
+const heroTl = gsap.timeline({defaults:{ease:'power3.out'}});
+heroTl
+  .from('.hero-logo-mark',{opacity:0,scale:.7,duration:.9,delay:.1})
+  .from('.hero-tag',{opacity:0,y:12,duration:.6},'-=.4')
+  .from('#hero h1',{opacity:0,y:20,duration:.8},'-=.3')
+  .from('#hero .hero-sub',{opacity:0,y:15,duration:.7},'-=.4')
+  .from('#hero .hero-meta',{opacity:0,duration:.5},'-=.3')
+  .from('.hero-btns',{opacity:0,y:10,duration:.6},'-=.3')
+  .from('.hero-tagline',{opacity:0,duration:.5},'-=.3');
+
+/* ── SCROLL FADE ─────────────────────────────── */
+gsap.utils.toArray('.gsap-fade').forEach((el,i)=>{
+  gsap.fromTo(el,
+    {opacity:0,y:24},
+    {opacity:1,y:0,duration:.75,ease:'power2.out',
+     scrollTrigger:{trigger:el,start:'top 88%'},
+     delay:(i%4)*.08
+    }
+  );
+});
+
+/* ── SECTION TITLES ─────────────────────────── */
+gsap.utils.toArray('.sec-title,.sec-label').forEach(el=>{
+  gsap.fromTo(el,
+    {opacity:0,x:-18},
+    {opacity:1,x:0,duration:.7,ease:'power2.out',
+     scrollTrigger:{trigger:el,start:'top 90%'}}
+  );
+});
+
+/* ── STATS COUNTER ───────────────────────────── */
+gsap.utils.toArray('.stat-block').forEach(block=>{
+  ScrollTrigger.create({
+    trigger:block,start:'top 85%',once:true,
+    onEnter(){
+      gsap.fromTo(block,{opacity:0,y:20},{opacity:1,y:0,duration:.6,ease:'power2.out'});
+    }
+  });
+});
+
+/* ── CARD HOVER (micro-zoom) ─────────────────── */
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('mouseenter',()=>gsap.to(card,{scale:1.025,duration:.3,ease:'power2.out'}));
+  card.addEventListener('mouseleave',()=>gsap.to(card,{scale:1,duration:.3,ease:'power2.out'}));
+});
+
+/* ── NAV ACTIVE + DOTS ───────────────────────── */
+const sections = ['hero','quem-somos','problema','solucao','mercado','modelo','nota','oferta','proximos'];
+const dots = document.querySelectorAll('.dot');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+dots.forEach(dot=>{
+  dot.addEventListener('click',()=>{
+    const id = dot.dataset.target;
+    gsap.to(window,{scrollTo:{y:'#'+id,offsetY:68},duration:1,ease:'power2.inOut'});
+  });
+});
+
+function updateActive(){
+  let current='hero';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&window.scrollY>=el.offsetTop-200) current=id;
+  });
+  dots.forEach(d=>{d.classList.toggle('active',d.dataset.target===current)});
+  navLinks.forEach(a=>{
+    const href=a.getAttribute('href').replace('#','');
+    a.classList.toggle('active',href===current);
+  });
+}
+window.addEventListener('scroll',updateActive,{passive:true});
+updateActive();
+
+/* ── MOBILE MENU ─────────────────────────────── */
+function toggleMenu(){
+  const menu=document.getElementById('mobileMenu');
+  const hamburger=document.querySelector('.nav-hamburger');
+  const open=menu.classList.toggle('open');
+  hamburger.classList.toggle('open',open);
+  hamburger.setAttribute('aria-expanded',open?'true':'false');
+  document.body.classList.toggle('menu-open',open);
+}
+function closeMenu(){
+  const menu=document.getElementById('mobileMenu');
+  if(!menu.classList.contains('open'))return;
+  menu.classList.remove('open');
+  document.querySelector('.nav-hamburger').classList.remove('open');
+  document.querySelector('.nav-hamburger').setAttribute('aria-expanded','false');
+  document.body.classList.remove('menu-open');
+}
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',closeMenu));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+window.addEventListener('resize',()=>{if(window.innerWidth>1024)closeMenu()});
+
+/* ──────────────────────────────────────────────────────
+   CHARTS — shadcn-inspired theme
+   ────────────────────────────────────────────────────── */
+const BRAND = {
+  orange:'#D97757', orangeDim:'#b85e3e', green:'#2B9C98',
+  dark:'#1C1917', muted:'#7A7370', border:'#E3E0DD'
+};
+Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = BRAND.muted;
+Chart.defaults.animation.duration = 900;
+Chart.defaults.animation.easing = 'easeOutQuart';
+
+// Vertical gradient utility
+function vGradient(ctx, area, c1, c2){
+  if(!area)return c1;
+  const g = ctx.createLinearGradient(0, area.top, 0, area.bottom);
+  g.addColorStop(0, c1); g.addColorStop(1, c2);
+  return g;
+}
+
+// Premium tooltip (shadcn-style)
+const tooltipBase = {
+  enabled:true, padding:12, cornerRadius:8,
+  backgroundColor:'rgba(28,25,23,.96)', borderColor:'rgba(217,119,87,.4)', borderWidth:1,
+  titleColor:'#fff', titleFont:{size:11,weight:'600'},
+  bodyColor:'rgba(255,255,255,.85)', bodyFont:{size:12,weight:'500'},
+  displayColors:true, boxPadding:6, boxWidth:8, boxHeight:8, usePointStyle:true,
+  caretSize:5, caretPadding:8,
+};
+
+/* ── CHART 1: AI COST (dark bg) ──────────────── */
+new Chart(document.getElementById('chartAICost'),{
+  type:'bar',
+  data:{
+    labels:['2022','2023','2024 (mid)','2024 (late)','2025','2026'],
+    datasets:[{
+      label:'USD por 1M tokens (entrada)',
+      data:[120,30,15,5,2,2],
+      borderRadius:6, borderSkipped:false,
+      backgroundColor:(ctx)=>vGradient(ctx.chart.ctx, ctx.chart.chartArea,
+        'rgba(217,119,87,1)','rgba(217,119,87,.15)'),
+      borderColor:'rgba(217,119,87,.6)', borderWidth:0,
+      hoverBackgroundColor:(ctx)=>vGradient(ctx.chart.ctx, ctx.chart.chartArea,
+        '#f0a07c','rgba(217,119,87,.3)'),
+      barPercentage:.7, categoryPercentage:.78,
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    layout:{padding:{top:8}},
+    plugins:{
+      legend:{display:false},
+      tooltip:{...tooltipBase, callbacks:{
+        label:ctx=>`USD $${ctx.parsed.y} / 1M tokens`,
+        afterLabel:ctx=>{
+          const reduction = ((120-ctx.parsed.y)/120*100).toFixed(0);
+          return ctx.parsed.y < 120 ? `↓ ${reduction}% vs 2022` : '';
+        }
+      }}
+    },
+    scales:{
+      x:{grid:{display:false},border:{display:false},
+         ticks:{color:'rgba(255,255,255,.55)',font:{size:11,weight:'500'}}},
+      y:{grid:{color:'rgba(255,255,255,.06)',drawTicks:false},border:{display:false},
+         ticks:{color:'rgba(255,255,255,.45)',font:{size:10},padding:8,callback:v=>'$'+v}}
+    }
+  }
+});
+
+/* ── CHART 2: MARKET DOUGHNUT (dark bg) ──────── */
+new Chart(document.getElementById('chartMarket'),{
+  type:'doughnut',
+  data:{
+    labels:['Autônomos (1 adv.)','Pequenos (2 a 10)','Médios (11 a 30)','Grandes (31+)'],
+    datasets:[{
+      data:[43,32,15,10],
+      backgroundColor:[BRAND.orange,'#e89478','rgba(217,119,87,.55)','rgba(217,119,87,.28)'],
+      borderColor:BRAND.dark, borderWidth:3, hoverOffset:10, hoverBorderColor:'#fff',
+      spacing:2,
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,cutout:'68%',
+    plugins:{
+      legend:{position:'right',align:'center',
+        labels:{color:'rgba(255,255,255,.85)',font:{size:11.5,weight:'500'},
+                padding:12,boxWidth:10,boxHeight:10,usePointStyle:true,pointStyle:'circle'}},
+      tooltip:{...tooltipBase, callbacks:{label:ctx=>`${ctx.label}: ${ctx.parsed}%`}}
+    }
+  }
+});
+
+/* ── CHART 3: REVENUE MIX (light bg) ─────────── */
+new Chart(document.getElementById('chartRevenue'),{
+  type:'doughnut',
+  data:{
+    labels:['Assinatura SaaS','Consumo IA extra','White-label','Integrações premium'],
+    datasets:[{
+      data:[55,25,12,8],
+      backgroundColor:[BRAND.orange,'#e89478','#f4c4af','rgba(217,119,87,.25)'],
+      borderColor:'#fff', borderWidth:3, hoverOffset:8, spacing:2,
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,cutout:'62%',
+    plugins:{
+      legend:{position:'right',align:'center',
+        labels:{color:BRAND.dark,font:{size:11.5,weight:'500'},
+                padding:12,boxWidth:10,boxHeight:10,usePointStyle:true,pointStyle:'circle'}},
+      tooltip:{...tooltipBase, callbacks:{label:ctx=>`${ctx.label}: ${ctx.parsed}%`}}
+    }
+  }
+});
+
+/* ── CHART 4: GROWTH (light bg, dual line) ────── */
+new Chart(document.getElementById('chartGrowth'),{
+  type:'line',
+  data:{
+    labels:['T1','T2','T3','T4','T5','T6','T7','T8'],
+    datasets:[
+      {
+        label:'Cenário projetado (com sócio estratégico)',
+        data:[10,22,40,65,95,130,170,220],
+        borderColor:BRAND.orange,
+        backgroundColor:(ctx)=>vGradient(ctx.chart.ctx, ctx.chart.chartArea,
+          'rgba(217,119,87,.28)','rgba(217,119,87,0)'),
+        pointBackgroundColor:'#fff', pointBorderColor:BRAND.orange, pointBorderWidth:2,
+        pointRadius:4, pointHoverRadius:7, pointHoverBorderWidth:3,
+        fill:true, tension:.38, borderWidth:2.5,
+      },
+      {
+        label:'Cenário conservador',
+        data:[8,15,28,45,65,88,115,148],
+        borderColor:'rgba(43,156,152,.85)',
+        backgroundColor:'rgba(43,156,152,.04)',
+        pointBackgroundColor:'#fff', pointBorderColor:BRAND.green, pointBorderWidth:2,
+        pointRadius:3, pointHoverRadius:6,
+        fill:true, tension:.38, borderWidth:2, borderDash:[6,4],
+      }
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    layout:{padding:{top:10}},
+    plugins:{
+      legend:{position:'top',align:'start',
+        labels:{color:BRAND.dark,font:{size:11.5,weight:'500'},
+                padding:14,boxWidth:14,boxHeight:2,usePointStyle:false}},
+      tooltip:{...tooltipBase, callbacks:{
+        title:items=>'Trimestre '+items[0].label,
+        label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y} escritórios`
+      }}
+    },
+    scales:{
+      x:{grid:{display:false},border:{color:BRAND.border},
+         ticks:{color:BRAND.muted,font:{size:11,weight:'500'}}},
+      y:{grid:{color:'rgba(0,0,0,.04)',drawTicks:false},border:{display:false},
+         ticks:{color:BRAND.muted,font:{size:10.5},padding:8,stepSize:50}}
+    }
+  }
+});
+</script>
+</body>
+</html>
