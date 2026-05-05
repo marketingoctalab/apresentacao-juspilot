@@ -403,8 +403,8 @@ body.menu-open{overflow:hidden}
   .profile-grid{grid-template-columns:1fr}
   .module-list{grid-template-columns:1fr}
   .urgency-row{grid-template-columns:1fr}
-  .compare-table-wrap{margin:0 calc(-1 * var(--pad-x));padding:0 var(--pad-x);overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .compare-table{min-width:560px}
+  .compare-table-wrap{margin:0;padding:0;overflow:visible}
+  .compare-table{min-width:0}
   .chart-canvas-wrap{height:240px}
   .card{padding:1.5rem}
 }
@@ -414,7 +414,7 @@ body.menu-open{overflow:hidden}
   .btn-primary,.btn-outline{width:100%;text-align:center}
   .stat-num{font-size:clamp(1.7rem,8vw,2.2rem)}
   .pricing-table,.terms-table,.compare-table{font-size:.82rem}
-  .pricing-table th,.terms-table td,.compare-table th,.compare-table td{padding:.7rem .65rem}
+  .pricing-table th,.terms-table td{padding:.7rem .65rem}
   .scenario,.urgency-item{padding:1.25rem}
   .card{padding:1.25rem}
   .chart-canvas-wrap{height:200px}
@@ -1072,6 +1072,18 @@ body.menu-open{overflow:hidden}
   .oferta-grand > div:last-child{border-bottom:none}
 }
 
+/* Quem Somos: produtos grid responsivo */
+.qs-products{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));
+  gap:.75rem;margin-top:.5rem;
+}
+.qs-products .card{padding:1.1rem 1.15rem;min-width:0}
+.qs-products .qs-full{grid-column:1/-1}
+.qs-product-val{font-size:.88rem;font-weight:600;color:var(--black);line-height:1.4;word-break:break-word;overflow-wrap:anywhere}
+@media(max-width:480px){
+  .qs-products{grid-template-columns:1fr}
+}
+
 /* Cockpit body — refined card grid below the cinematic top */
 .oferta-cockpit{
   background:var(--sand);padding:clamp(3rem,7vw,5rem) var(--pad-x);
@@ -1131,26 +1143,60 @@ section{overflow:hidden}
   .module-item h5{font-size:.92rem}
   .module-item p{font-size:.8rem;line-height:1.5}
 
-  /* Pricing table: more touch-friendly */
-  .pricing-table th,.pricing-table td{padding:.75rem .7rem;font-size:.82rem}
-  .pricing-plan{font-size:.88rem}
+  /* Pricing table: convert to stacked card list em mobile */
+  .pricing-table{display:block;width:100%;font-size:.85rem;margin-top:1rem}
+  .pricing-table thead{display:none}
+  .pricing-table tbody{display:flex;flex-direction:column;gap:.7rem}
+  .pricing-table tr{
+    display:grid;grid-template-columns:1fr;gap:.4rem;
+    padding:1rem 1.1rem;
+    border:1px solid var(--border);border-radius:10px;
+    background:var(--white);
+  }
+  .pricing-table tr.pricing-highlight{
+    border-color:var(--orange);
+    background:linear-gradient(180deg,rgba(217,119,87,.04),var(--white));
+  }
+  .pricing-table tr.pricing-highlight td{border-top:none!important;border-bottom:none!important}
+  .pricing-table tr:nth-child(even) td{background:transparent}
+  .pricing-table td{
+    display:flex;flex-direction:column;gap:.15rem;
+    padding:0;border:none;line-height:1.45;
+  }
+  .pricing-table td[data-label]::before{
+    content:attr(data-label);
+    font-size:.6rem;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .pricing-table td.pp-name{
+    border-bottom:1px solid var(--border);padding-bottom:.55rem;margin-bottom:.4rem;
+  }
+  .pricing-table tr.pricing-highlight td.pp-name{border-bottom-color:rgba(217,119,87,.3)}
+  .pricing-plan{font-size:1rem}
 
-  /* Compare table: keep horizontal scroll but show hint */
-  .compare-table-wrap{
-    position:relative;
-    margin:0 calc(-1 * var(--pad-x));
-    padding:0 var(--pad-x) .5rem;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    scroll-snap-type:x proximity;
+  /* Compare table: convert to stacked card list em mobile (mais legível que scroll) */
+  .compare-table-wrap{margin:0;padding:0;overflow:visible}
+  .compare-table{display:block;width:100%;font-size:.85rem}
+  .compare-table thead{display:none}
+  .compare-table tbody{display:flex;flex-direction:column;gap:.6rem}
+  .compare-table tr{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:.6rem;padding:.85rem;
+    border:1px solid var(--border);border-radius:8px;
+    background:var(--white);
   }
-  .compare-table-wrap::after{
-    content:'';position:sticky;right:0;top:0;width:24px;height:100%;
-    background:linear-gradient(90deg,transparent,var(--white));
-    pointer-events:none;display:block;
+  .compare-table tr:nth-child(even) td{background:transparent}
+  .compare-table td{
+    display:block;border-bottom:none;padding:0;line-height:1.45;
+    font-size:.78rem;
   }
-  .compare-table{min-width:520px;font-size:.82rem}
-  .compare-table th,.compare-table td{padding:.7rem .65rem}
+  .compare-table td.col-key{
+    grid-column:1/-1;font-size:.65rem;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--orange);
+    padding-bottom:.3rem;border-bottom:1px solid var(--border);margin-bottom:.3rem;
+  }
+  .compare-table td.col-bad::before{content:'Hoje';display:block;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
+  .compare-table td.col-good::before{content:'Juspilot';display:block;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:.25rem}
 
   /* Term sheet: compact + comfortable */
   .termsheet-head{padding:.85rem 1.1rem;flex-direction:column;align-items:flex-start;gap:.65rem}
@@ -1169,11 +1215,12 @@ section{overflow:hidden}
   .chart-wrap h5{font-size:.7rem;margin-bottom:.85rem;letter-spacing:.06em}
   .chart-canvas-wrap{height:240px!important}
 
-  /* Stats: more vertical breathing */
-  .stat-block{padding:1.4rem 1.25rem}
-  .stat-num{font-size:clamp(1.85rem,7.5vw,2.4rem);letter-spacing:-1px}
-  .stat-label{font-size:.78rem;line-height:1.45;margin-top:.45rem}
-  .stat-trend{font-size:.66rem;padding:.18rem .5rem;margin-top:.55rem}
+  /* Stats: 2x2 grid em mobile, mais compacto */
+  #mercado .grid-4{grid-template-columns:1fr 1fr!important;gap:.75rem}
+  .stat-block{padding:1.1rem 1rem}
+  .stat-num{font-size:clamp(1.55rem,6.5vw,2rem);letter-spacing:-.6px;line-height:1}
+  .stat-label{font-size:.72rem;line-height:1.4;margin-top:.4rem}
+  .stat-trend{font-size:.6rem;padding:.18rem .5rem;margin-top:.5rem;letter-spacing:.02em}
 
   /* TAM stack: full width, no indent */
   .tam-row{padding:.95rem 1rem;grid-template-columns:auto 1fr auto;gap:.65rem}
@@ -1244,13 +1291,16 @@ section{overflow:hidden}
   #closing{padding:clamp(3.5rem,9vw,5rem) 0}
   #closing h2{font-size:clamp(1.55rem,6.5vw,2.2rem);letter-spacing:-.7px;padding:0 1rem;line-height:1.15}
   #closing p{font-size:.95rem;padding:0 1rem}
-  .contact-grid{gap:1.5rem 2rem;margin-top:2rem;padding-top:2rem}
-  .contact-item{flex:1 1 40%;min-width:120px}
+  .contact-grid{gap:1.5rem 1.5rem;margin-top:2rem;padding-top:2rem;flex-direction:column}
+  .contact-item{flex:1 1 100%;min-width:0;width:100%}
   .contact-label{font-size:.62rem}
-  .contact-val{font-size:.85rem;word-break:break-word}
+  .contact-val{font-size:.85rem;word-break:break-word;overflow-wrap:anywhere}
 
   /* Pull quotes */
-  .pull-quote{padding:.7rem 1rem;font-size:.9rem;line-height:1.55}
+  .pull-quote{padding:.7rem 1rem;font-size:.9rem;line-height:1.55;margin:1.25rem 0}
+
+  /* Modelo grid: pull-quote primeiro, depois chart, com espaço */
+  #modelo .grid-2{gap:1.5rem!important}
 
   /* Eyebrows */
   .eyebrow,.sec-label{font-size:.62rem;letter-spacing:.16em}
@@ -1296,11 +1346,11 @@ section{overflow:hidden}
 
   .timing-bar-marks{font-size:.58rem;letter-spacing:.05em}
 
-  .compare-table{min-width:480px;font-size:.78rem}
-  .compare-table th,.compare-table td{padding:.6rem .55rem}
+  .compare-table{min-width:0;font-size:.78rem}
 
-  .pricing-table{font-size:.78rem}
-  .pricing-table th,.pricing-table td{padding:.65rem .6rem}
+  .pricing-table{font-size:.82rem}
+  .pricing-table tr{padding:.85rem .95rem}
+  .pricing-plan{font-size:.95rem}
 
   .trust-row .label{font-size:.58rem}
 
@@ -1435,18 +1485,18 @@ section{overflow:hidden}
     <div>
       <h3 style="font-size:1.35rem;font-weight:700;letter-spacing:-.5px;margin-bottom:1.25rem">Juspilot</h3>
       <p style="font-size:.93rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem">Plataforma jurídica completa com IA contextual para escritórios e advogados autônomos. Não é "mais um chatbot". É um cockpit operacional, com casos, minutas, CRM, contratos, jurisprudência e agentes de IA integrados.</p>
-      <div class="grid-2" style="gap:1rem;margin-top:.5rem">
-        <div class="card orange-accent" style="padding:1.25rem">
+      <div class="qs-products">
+        <div class="card orange-accent">
           <div class="card-label">Web App</div>
-          <div style="font-size:.9rem;font-weight:600">app.juspilot.ai</div>
+          <div class="qs-product-val">app.juspilot.ai</div>
         </div>
-        <div class="card orange-accent" style="padding:1.25rem">
+        <div class="card orange-accent">
           <div class="card-label">Mobile</div>
-          <div style="font-size:.9rem;font-weight:600">iOS + Android</div>
+          <div class="qs-product-val">iOS + Android</div>
         </div>
-        <div class="card orange-accent" style="padding:1.25rem;grid-column:span 2">
-          <div class="card-label">White-label</div>
-          <div style="font-size:.9rem;font-weight:600">Portal *.juspilot.co para clientes finais</div>
+        <div class="card orange-accent qs-full">
+          <div class="card-label">White label</div>
+          <div class="qs-product-val">Portal *.juspilot.co para clientes finais</div>
         </div>
       </div>
     </div>
@@ -1715,24 +1765,24 @@ section{overflow:hidden}
         <thead><tr><th>Plano</th><th>Preço</th><th>Créditos de IA / mês</th></tr></thead>
         <tbody>
           <tr>
-            <td><span class="pricing-plan">Essencial</span></td>
-            <td>Gratuito</td>
-            <td>50</td>
+            <td class="pp-name"><span class="pricing-plan">Essencial</span></td>
+            <td data-label="Preço">Gratuito</td>
+            <td data-label="Créditos de IA">50 por mês</td>
           </tr>
           <tr>
-            <td><span class="pricing-plan">Solo</span></td>
-            <td>R$ 127 / mês</td>
-            <td>1.000</td>
+            <td class="pp-name"><span class="pricing-plan">Solo</span></td>
+            <td data-label="Preço">R$ 127 / mês</td>
+            <td data-label="Créditos de IA">1.000 por mês</td>
           </tr>
           <tr class="pricing-highlight">
-            <td><span class="pricing-plan" style="color:var(--orange)">Professional</span></td>
-            <td>R$ 247 / usuário / mês<br><small style="color:var(--muted)">A partir de 3 usuários</small></td>
-            <td>5.000<br><small style="color:var(--muted)">por usuário</small></td>
+            <td class="pp-name"><span class="pricing-plan" style="color:var(--orange)">Professional</span></td>
+            <td data-label="Preço">R$ 247 / usuário / mês<br><small style="color:var(--muted)">A partir de 3 usuários</small></td>
+            <td data-label="Créditos de IA">5.000 por usuário<br><small style="color:var(--muted)">por mês</small></td>
           </tr>
           <tr>
-            <td><span class="pricing-plan">Enterprise</span></td>
-            <td>Sob consulta</td>
-            <td>Ilimitado</td>
+            <td class="pp-name"><span class="pricing-plan">Enterprise</span></td>
+            <td data-label="Preço">Sob consulta</td>
+            <td data-label="Créditos de IA">Ilimitado</td>
           </tr>
         </tbody>
       </table>
