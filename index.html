@@ -151,12 +151,13 @@ body.menu-open{overflow:hidden}
 .hero-logo-mark{width:64px;height:auto;margin:0 auto 2rem;display:block}
 .hero-tag{
   display:inline-flex;align-items:center;gap:.5rem;
-  background:rgba(217,119,87,.15);border:1px solid rgba(217,119,87,.3);
-  color:var(--orange);font-size:.72rem;font-weight:600;letter-spacing:.08em;
-  text-transform:uppercase;padding:.4rem 1rem;border-radius:999px;
-  margin-bottom:1.75rem;
+  background:rgba(217,119,87,.12);border:1px solid rgba(217,119,87,.28);
+  color:var(--orange);font-size:.72rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;padding:.5rem 1rem;border-radius:999px;
+  margin-bottom:1.75rem;line-height:1.35;text-align:center;
+  max-width:100%;
 }
-.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
 .hero h1, #hero h1{
   font-size:clamp(2.1rem, 6.2vw, 4.4rem);font-weight:700;
@@ -429,7 +430,7 @@ body.menu-open{overflow:hidden}
 }
 /* very small phones */
 @media(max-width:380px){
-  .hero-tag{font-size:.66rem;padding:.35rem .8rem}
+  .hero-tag{font-size:.58rem;padding:.5rem .85rem;letter-spacing:.08em}
   .nav-logo-text{display:none}
   .deal-card{padding:1.25rem}
 }
@@ -1118,7 +1119,7 @@ section{overflow:hidden}
   /* Hero: balance + breathe */
   #hero{padding-top:calc(var(--nav-h) + 2.5rem);padding-bottom:3.5rem}
   .hero-logo-mark{width:54px;margin-bottom:1.5rem}
-  .hero-tag{font-size:.66rem;padding:.4rem .85rem;letter-spacing:.06em;margin-bottom:1.25rem}
+  .hero-tag{font-size:.62rem;padding:.55rem 1rem;letter-spacing:.1em;margin-bottom:1.25rem;border-radius:14px;max-width:calc(100% - 1rem)}
   .hero h1{font-size:clamp(1.85rem,8.5vw,2.6rem);letter-spacing:-1px;line-height:1.1}
   .hero-sub{font-size:.95rem;line-height:1.6;margin-bottom:1.75rem;max-width:36ch}
   .hero-badge-row{gap:.4rem;margin-bottom:1.25rem}
@@ -1447,13 +1448,13 @@ section{overflow:hidden}
       <path d="M187.131 67.9395C193.725 67.9397 199.07 73.2858 199.07 79.8799V92.1074C199.07 98.7015 193.725 104.048 187.131 104.048H149.896V176.593L149.711 177.873C144.481 214.154 113.138 226.03 95.0566 224.152C85.1393 223.122 77.9341 214.247 78.9639 204.33C79.9941 194.413 88.8689 187.207 98.7861 188.237C98.8506 188.242 98.9547 188.246 99.0342 188.246C99.1958 188.246 99.4162 188.238 99.6904 188.214C100.246 188.164 100.949 188.051 101.753 187.841C103.381 187.414 105.153 186.66 106.8 185.532C109.592 183.62 112.597 180.286 113.788 173.838V104.048H76.0811C69.4869 104.048 64.1406 98.7016 64.1406 92.1074V79.8799C64.1406 73.2857 69.4869 67.9395 76.0811 67.9395H187.131Z" fill="#D97757"/>
       <path d="M232.801 50.836C232.801 41.1275 224.93 33.2572 215.222 33.2572H50.836C41.1275 33.2572 33.2572 41.1275 33.2572 50.836V232.325C33.2572 242.034 41.1275 249.904 50.836 249.904H215.222C224.93 249.904 232.801 242.034 232.801 232.325V50.836ZM266.058 232.325C266.058 260.401 243.298 283.162 215.222 283.162H50.836C22.7601 283.162 0 260.401 0 232.325V50.836C0 22.7601 22.7601 0 50.836 0H215.222C243.298 0 266.058 22.7601 266.058 50.836V232.325Z" fill="#D97757"/>
     </svg>
-    <div class="hero-tag">Proposta de Nota Conversível · Sócio-Investidor Estratégico</div>
-    <h1>Investir hoje. Converter em <em>equity</em> amanhã.</h1>
-    <p class="hero-sub">Proposta de Nota Conversível para entrar na Juspilot, o cockpit jurídico com IA da Octalab, antes do round que precifica a tração consolidada.</p>
+    <div class="hero-tag">Proposta de Participação Societária · Sócio Investidor Estratégico</div>
+    <h1>Investir hoje no futuro da advocacia <em>powered by tech</em>.</h1>
+    <p class="hero-sub">Proposta de participação societária na Juspilot, o cockpit jurídico com IA da Octalab, antes do round que precifica a tração consolidada.</p>
     <div class="hero-badge-row">
-      <span class="hero-pill"><span class="dot"></span>Nota Conversível</span>
-      <span class="hero-pill"><span class="dot"></span>Cap + Desconto</span>
-      <span class="hero-pill"><span class="dot"></span>Conversão automática no próximo round</span>
+      <span class="hero-pill"><span class="dot"></span>R$ 1 milhão por 10%</span>
+      <span class="hero-pill"><span class="dot"></span>Assento no board</span>
+      <span class="hero-pill"><span class="dot"></span>Sócio investidor estratégico</span>
     </div>
     <p class="hero-meta">Octalab · 2026 · Confidencial</p>
     <div class="hero-btns">
@@ -1844,7 +1845,7 @@ section{overflow:hidden}
     </div>
     <div class="termsheet-body">
       <div class="ts-row"><span class="ts-k">Instrumento</span><span class="ts-v">Mútuo Conversível em participação societária (Lei Complementar 182/21)</span></div>
-      <div class="ts-row"><span class="ts-k">Aporte alvo</span><span class="ts-v featured">R$ 1 a 3 milhões</span></div>
+      <div class="ts-row"><span class="ts-k">Aporte</span><span class="ts-v featured">R$ 1 milhão por 10% da Juspilot</span></div>
       <div class="ts-row"><span class="ts-k">Valuation Cap</span><span class="ts-v">A definir em term sheet, faixa de mercado para o estágio</span></div>
       <div class="ts-row"><span class="ts-k">Governança imediata</span><span class="ts-v">Assento no board e direitos de informação a partir da assinatura</span></div>
       <div class="ts-row"><span class="ts-k">Direitos pós conversão</span><span class="ts-v">Tag along, anti diluição padrão e drag along em evento de saída</span></div>
@@ -1896,31 +1897,31 @@ section{overflow:hidden}
     <div class="oferta-cinema-inner">
       <span class="oferta-eyebrow">Parte 7 · A Oferta</span>
       <h2 class="oferta-headline">Capital, rede e <em>conversão</em><br/>em um único instrumento.</h2>
-      <p class="oferta-deck">O jurídico é mercado de relacionamento. Sócios de escritório compram de quem confiam. Por isso, a oferta combina <strong style="color:#fff">capital, rede ativa e upside contratual</strong> em uma Nota Conversível desenhada para alinhar incentivos antes do round que precifica a tração consolidada.</p>
+      <p class="oferta-deck">O jurídico é mercado de relacionamento. Sócios de escritório compram de quem confiam. Por isso, a oferta combina <strong style="color:#fff">capital, equity e rede ativa</strong> em uma estrutura desenhada para alinhar incentivos antes do round que precifica a tração consolidada.</p>
 
-      <!-- 3 pilares da oferta: Capital, Rede, Governança -->
+      <!-- 3 pilares da oferta -->
       <div class="oferta-grand">
-        <div>
-          <div class="oferta-grand-label">Capital</div>
-          <div class="oferta-grand-num">R$ 1 a 3M</div>
-          <div class="oferta-grand-sub">Aporte alvo via Mútuo Conversível, ajustado ao papel estratégico do sócio.</div>
+        <div class="featured">
+          <div class="oferta-grand-label">Aporte</div>
+          <div class="oferta-grand-num">R$ 1 M</div>
+          <div class="oferta-grand-sub">Capital de entrada via participação societária na Juspilot.</div>
         </div>
         <div class="featured">
+          <div class="oferta-grand-label">Equity</div>
+          <div class="oferta-grand-num">10%</div>
+          <div class="oferta-grand-sub">Participação societária na Juspilot pelo aporte e papel ativo do sócio.</div>
+        </div>
+        <div>
           <div class="oferta-grand-label">Rede ativa</div>
           <div class="oferta-grand-num">30 a 50</div>
           <div class="oferta-grand-sub">Escritórios âncora abertos pela rede do sócio no primeiro ano.</div>
         </div>
-        <div>
-          <div class="oferta-grand-label">Governança</div>
-          <div class="oferta-grand-num">Board</div>
-          <div class="oferta-grand-sub">Assento no conselho e direitos de informação a partir da assinatura.</div>
-        </div>
       </div>
 
-      <div style="margin-top:clamp(2rem,4vw,3rem);display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;font-size:.78rem;color:rgba(255,255,255,.55)">
-        <span style="display:inline-flex;align-items:center;gap:.4rem"><span style="width:6px;height:6px;border-radius:50%;background:var(--orange)"></span>Mútuo Conversível BR</span>
+      <div style="margin-top:clamp(2rem,4vw,3rem);display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem .75rem;font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.5">
+        <span style="display:inline-flex;align-items:center;gap:.4rem"><span style="width:6px;height:6px;border-radius:50%;background:var(--orange)"></span>Participação societária</span>
         <span aria-hidden="true">·</span>
-        <span>Conversão automática no próximo round</span>
+        <span>Assento no board imediato</span>
         <span aria-hidden="true">·</span>
         <span>Termos finais negociados em term sheet</span>
       </div>
