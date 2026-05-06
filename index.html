@@ -378,6 +378,13 @@ body.menu-open{overflow:hidden}
 }
 .urgency-item h5{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
 .urgency-item p{font-size:.85rem;color:var(--muted);line-height:1.6}
+.urgency-item.featured{
+  background:linear-gradient(135deg,rgba(217,119,87,.10),rgba(217,119,87,.02));
+  border-left-width:4px;
+  box-shadow:0 4px 16px rgba(217,119,87,.10);
+}
+.urgency-item.featured h5{color:var(--black);font-weight:700}
+.urgency-item.featured p{color:rgba(28,25,23,.75)}
 
 /* ── CLOSING ─────────────────────────────────────────── */
 #closing{
@@ -2491,6 +2498,10 @@ section{overflow:hidden}
     <div>
       <h4 style="font-size:1rem;font-weight:600;margin-bottom:1.5rem">Por que fechar agora</h4>
       <div class="urgency-row" style="grid-template-columns:1fr;gap:1rem;margin-top:0">
+        <div class="urgency-item gsap-fade featured">
+          <h5>Desconto de 50% no plano Enterprise</h5>
+          <p>Desconto vitalício de 50% sobre o valor da mensalidade do plano Enterprise para o escritório do sócio investidor, a partir do fechamento.</p>
+        </div>
         <div class="urgency-item gsap-fade">
           <h5>A janela de adoção está abrindo este ano</h5>
           <p>Escritórios que adotarem IA agora vão criar vantagem operacional de 2 a 3 anos sobre quem esperar.</p>
