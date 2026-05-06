@@ -729,6 +729,44 @@ body.menu-open{overflow:hidden}
   margin-bottom:1.75rem;line-height:1.35;
 }
 .paggo-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite;flex-shrink:0}
+
+/* Paggo brand: logo + nome clicáveis levam ao site */
+.paggo-brand-row{
+  display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;
+  margin-bottom:1.5rem;
+}
+.paggo-logo-link{
+  display:inline-flex;align-items:center;
+  padding:.65rem 1rem;border-radius:10px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  transition:background .25s,border-color .25s,transform .25s;
+  text-decoration:none;
+}
+.paggo-logo-link:hover{
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.18);
+  transform:translateY(-1px);
+}
+.paggo-logo-link img{
+  height:24px;width:auto;display:block;
+  filter:brightness(0) invert(1);
+}
+.paggo-logo-link .visit{
+  font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);margin-left:.85rem;
+  display:inline-flex;align-items:center;gap:.3rem;
+  border-left:1px solid rgba(255,255,255,.12);padding-left:.85rem;
+}
+.paggo-logo-link:hover .visit{color:var(--orange)}
+
+/* Inline brand link inside body text */
+a.paggo-name{
+  color:var(--orange);text-decoration:none;font-weight:600;
+  border-bottom:1px solid rgba(217,119,87,.35);
+  transition:border-color .2s,color .2s;
+}
+a.paggo-name:hover{border-bottom-color:var(--orange);color:#f0a07c}
 .paggo-headline{
   font-size:clamp(1.9rem,4.6vw,3.2rem);font-weight:700;
   letter-spacing:-1.4px;line-height:1.08;
@@ -1833,7 +1871,7 @@ section{overflow:hidden}
         </div>
         <div class="card orange-accent qs-full">
           <div class="card-label">White label</div>
-          <div class="qs-product-val">Portal *.juspilot.co para clientes finais</div>
+          <div class="qs-product-val">Portal *.juspilot.ai para clientes finais</div>
         </div>
       </div>
     </div>
@@ -2167,8 +2205,14 @@ section{overflow:hidden}
 <div class="deco" style="bottom:80px;left:-80px;width:200px;opacity:.10"><img src="juspilot.ai/ELEMENTO%204%20JUSPILOT.svg" alt=""/></div>
 <div class="inner">
   <span class="paggo-eyebrow">Parte 6 · Contexto Estratégico</span>
-  <h2 class="paggo-headline">A Paggo não é apenas um sócio. É a <em>infraestrutura financeira</em> da Octalab.</h2>
-  <p class="paggo-deck">A Paggo é uma fintech brasileira que construiu o que os grandes bancos nunca conseguiram: um Sistema Operacional Financeiro para empresas. Conta PJ, pagamentos, recebíveis, tesouraria, cartões corporativos, conciliação e ERP contábil em uma única plataforma unificada.</p>
+  <div class="paggo-brand-row">
+    <a class="paggo-logo-link" href="https://www.paggo.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Visitar site da Paggo">
+      <img src="paggo-logo.png" alt="Paggo"/>
+      <span class="visit">paggo.com.br →</span>
+    </a>
+  </div>
+  <h2 class="paggo-headline">A <a class="paggo-name" href="https://www.paggo.com.br/" target="_blank" rel="noopener noreferrer">Paggo</a> não é apenas um sócio. É a <em>infraestrutura financeira</em> da Octalab.</h2>
+  <p class="paggo-deck">A <a class="paggo-name" href="https://www.paggo.com.br/" target="_blank" rel="noopener noreferrer">Paggo</a> é uma fintech brasileira que construiu o que os grandes bancos nunca conseguiram: um Sistema Operacional Financeiro para empresas. Conta PJ, pagamentos, recebíveis, tesouraria, cartões corporativos, conciliação e ERP contábil em uma única plataforma unificada.</p>
 
   <div class="paggo-grid">
 
