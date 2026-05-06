@@ -51,27 +51,31 @@ nav{
 }
 .nav-inner{
   width:100%;max-width:1160px;margin:0 auto;padding:0 var(--pad-x);
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  display:flex;align-items:center;justify-content:space-between;gap:clamp(.75rem,1.5vw,1.5rem);
 }
-.nav-logo{display:flex;align-items:center;gap:.75rem;cursor:pointer;text-decoration:none}
+.nav-logo{display:flex;align-items:center;gap:.65rem;cursor:pointer;text-decoration:none;flex-shrink:0;min-width:0}
 .nav-logo svg{height:26px;width:auto;flex-shrink:0}
 .nav-logo-text{
   font-size:.95rem;font-weight:600;color:#fff;letter-spacing:-.3px;
   white-space:nowrap;
 }
-.nav-links{display:flex;align-items:center;gap:clamp(.9rem,2vw,2rem);flex:1;justify-content:center}
+.nav-links{
+  display:flex;align-items:center;
+  gap:clamp(.65rem,1.5vw,1.4rem);
+  flex:1 1 auto;justify-content:center;min-width:0;
+}
 .nav-links a{
-  font-size:.8rem;font-weight:500;color:rgba(255,255,255,.65);
+  font-size:.78rem;font-weight:500;color:rgba(255,255,255,.65);
   text-decoration:none;letter-spacing:.02em;
   transition:color .25s;white-space:nowrap;
 }
 .nav-links a:hover,.nav-links a.active{color:var(--orange)}
 .nav-cta{
   background:var(--orange);color:#fff;border:none;
-  padding:.55rem 1.25rem;border-radius:3px;
-  font-size:.8rem;font-weight:600;cursor:pointer;
+  padding:.55rem 1.1rem;border-radius:3px;
+  font-size:.78rem;font-weight:600;cursor:pointer;
   letter-spacing:.02em;transition:background .2s,transform .2s;
-  white-space:nowrap;
+  white-space:nowrap;flex-shrink:0;
 }
 .nav-cta:hover{background:var(--orange-dark);transform:translateY(-1px)}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:12px;margin:-12px;border-radius:6px;transition:background .2s}
@@ -393,8 +397,8 @@ body.menu-open{overflow:hidden}
 .contact-val{font-size:.95rem;font-weight:500;color:rgba(255,255,255,.85)}
 
 /* ── RESPONSIVE BREAKPOINTS ──────────────────────────── */
-/* tablet & below: nav switches to hamburger */
-@media(max-width:1024px){
+/* nav: switch to hamburger antes do espremimento (com 9 links + cta) */
+@media(max-width:1140px){
   .nav-links{display:none}
   .nav-cta{display:none}
   .nav-hamburger{display:flex}
@@ -1769,17 +1773,17 @@ section{overflow:hidden}
       <span class="nav-logo-text">Juspilot</span>
     </a>
     <div class="nav-links">
-      <a href="#quem-somos">Quem Somos</a>
-      <a href="#problema">O Problema</a>
-      <a href="#solucao">A Solução</a>
+      <a href="#quem-somos">Sobre</a>
+      <a href="#problema">Problema</a>
+      <a href="#solucao">Solução</a>
       <a href="#mercado">Mercado</a>
       <a href="#modelo">Modelo</a>
       <a href="#paggo">Paggo</a>
       <a href="#nota">Estrutura</a>
-      <a href="#oferta">A Oferta</a>
-      <a href="#proximos">Próximos Passos</a>
+      <a href="#oferta">Oferta</a>
+      <a href="#proximos">Próximos</a>
     </div>
-    <button class="nav-cta" onclick="document.getElementById('proximos').scrollIntoView({behavior:'smooth'})">Entrar em Contato</button>
+    <button class="nav-cta" onclick="document.getElementById('proximos').scrollIntoView({behavior:'smooth'})">Contato</button>
     <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu" type="button" style="background:none;border:none">
       <span></span><span></span><span></span>
     </button>
