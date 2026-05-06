@@ -697,6 +697,142 @@ body.menu-open{overflow:hidden}
 }
 
 /* ════════════════════════════════════════════════════════
+   PAGGO PARTNERSHIP — strategic context section
+   ════════════════════════════════════════════════════════ */
+#paggo{
+  background:var(--dark);color:#fff;
+  position:relative;overflow:hidden;
+  padding:clamp(4rem,9vw,7rem) 0;
+}
+#paggo::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 90% 0%,rgba(217,119,87,.15) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 0% 100%,rgba(217,119,87,.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+#paggo::after{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask:radial-gradient(ellipse 60% 80% at 50% 50%,#000 30%,transparent 80%);
+  pointer-events:none;
+}
+#paggo .inner{position:relative;z-index:2}
+
+.paggo-eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--orange);
+  background:rgba(217,119,87,.12);border:1px solid rgba(217,119,87,.3);
+  padding:.45rem 1rem;border-radius:999px;
+  margin-bottom:1.75rem;line-height:1.35;
+}
+.paggo-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite;flex-shrink:0}
+.paggo-headline{
+  font-size:clamp(1.9rem,4.6vw,3.2rem);font-weight:700;
+  letter-spacing:-1.4px;line-height:1.08;
+  color:#fff;margin-bottom:1.5rem;text-wrap:balance;
+  max-width:24ch;
+}
+.paggo-headline em{font-style:normal;color:var(--orange)}
+.paggo-deck{
+  font-size:clamp(1rem,1.5vw,1.15rem);color:rgba(255,255,255,.7);
+  line-height:1.7;max-width:62ch;margin-bottom:clamp(2.5rem,5vw,3.5rem);
+}
+
+.paggo-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1.25rem;
+}
+.paggo-card{
+  position:relative;
+  padding:1.85rem 1.65rem;
+  border-radius:14px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  transition:border-color .3s,transform .3s,background .3s;
+  display:flex;flex-direction:column;gap:.85rem;
+  min-width:0;
+}
+.paggo-card:hover{
+  border-color:rgba(217,119,87,.4);
+  background:rgba(255,255,255,.04);
+  transform:translateY(-2px);
+}
+.paggo-card-num{
+  font-size:.7rem;font-weight:700;letter-spacing:.14em;
+  font-family:'JetBrains Mono',monospace;
+  color:var(--orange);margin-bottom:.2rem;
+}
+.paggo-card h4{
+  font-size:1.05rem;font-weight:700;letter-spacing:-.3px;
+  color:#fff;line-height:1.3;margin-bottom:.4rem;
+}
+.paggo-card p{
+  font-size:.88rem;color:rgba(255,255,255,.7);
+  line-height:1.65;
+}
+
+/* Card 04: data card with big number */
+.paggo-card.data .paggo-stat{
+  font-size:clamp(2rem,4.5vw,2.8rem);font-weight:700;
+  letter-spacing:-1.2px;line-height:1;
+  color:#fff;font-feature-settings:"tnum";
+  background:linear-gradient(180deg,#fff,rgba(255,255,255,.65));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:.4rem;
+}
+.paggo-card.data .paggo-stat-sub{
+  font-size:.85rem;color:var(--orange);font-weight:600;
+  letter-spacing:-.1px;margin-bottom:1rem;line-height:1.45;
+}
+.paggo-card.data .paggo-stat-sub strong{color:#fff;font-weight:700}
+
+/* Closing impact phrase (cinematic) */
+.paggo-impact{
+  margin-top:clamp(2.5rem,5vw,3.5rem);
+  padding:clamp(2rem,4.5vw,3rem) clamp(1.5rem,3.5vw,2.5rem);
+  border-radius:16px;
+  background:linear-gradient(135deg,rgba(217,119,87,.12),rgba(217,119,87,.04));
+  border:1px solid rgba(217,119,87,.25);
+  text-align:center;position:relative;overflow:hidden;
+}
+.paggo-impact::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 50% 80% at 50% 0%,rgba(217,119,87,.18) 0%,transparent 60%);
+  pointer-events:none;
+}
+.paggo-impact > *{position:relative;z-index:1}
+.paggo-impact-line1{
+  font-size:clamp(1.05rem,2.4vw,1.4rem);font-weight:500;
+  color:rgba(255,255,255,.65);
+  font-style:italic;letter-spacing:-.2px;line-height:1.45;
+  margin-bottom:.45rem;
+}
+.paggo-impact-line2{
+  font-size:clamp(1.2rem,3vw,1.85rem);font-weight:700;
+  color:#fff;letter-spacing:-.6px;line-height:1.25;
+  font-style:italic;text-wrap:balance;
+}
+.paggo-impact-line2 strong{
+  color:var(--orange);font-style:normal;font-weight:700;
+}
+
+@media(max-width:768px){
+  .paggo-headline{font-size:clamp(1.6rem,7vw,2.2rem);letter-spacing:-.8px}
+  .paggo-deck{font-size:.95rem;line-height:1.65}
+  .paggo-grid{grid-template-columns:1fr;gap:.85rem}
+  .paggo-card{padding:1.4rem 1.25rem}
+  .paggo-card h4{font-size:1rem}
+  .paggo-card p{font-size:.85rem}
+  .paggo-card.data .paggo-stat{font-size:clamp(1.6rem,8vw,2.2rem)}
+  .paggo-card.data .paggo-stat-sub{font-size:.8rem}
+  .paggo-impact-line1{font-size:.95rem}
+  .paggo-impact-line2{font-size:1.1rem;letter-spacing:-.3px}
+}
+
+/* ════════════════════════════════════════════════════════
    TERM SHEET (executive) + INTENT cards
    ════════════════════════════════════════════════════════ */
 .termsheet{
@@ -1600,6 +1736,7 @@ section{overflow:hidden}
       <a href="#solucao">A Solução</a>
       <a href="#mercado">Mercado</a>
       <a href="#modelo">Modelo</a>
+      <a href="#paggo">Paggo</a>
       <a href="#nota">Estrutura</a>
       <a href="#oferta">A Oferta</a>
       <a href="#proximos">Próximos Passos</a>
@@ -1618,6 +1755,7 @@ section{overflow:hidden}
   <a href="#solucao" onclick="toggleMenu()">A Solução</a>
   <a href="#mercado" onclick="toggleMenu()">Mercado</a>
   <a href="#modelo" onclick="toggleMenu()">Modelo</a>
+  <a href="#paggo" onclick="toggleMenu()">Paggo</a>
   <a href="#nota" onclick="toggleMenu()">Estrutura</a>
   <a href="#oferta" onclick="toggleMenu()">A Oferta</a>
   <a href="#proximos" onclick="toggleMenu()">Próximos Passos</a>
@@ -1631,6 +1769,7 @@ section{overflow:hidden}
   <div class="dot" data-target="solucao" title="A Solução"></div>
   <div class="dot" data-target="mercado" title="Mercado"></div>
   <div class="dot" data-target="modelo" title="Modelo"></div>
+  <div class="dot" data-target="paggo" title="Paggo"></div>
   <div class="dot" data-target="nota" title="Estrutura"></div>
   <div class="dot" data-target="oferta" title="A Oferta"></div>
   <div class="dot" data-target="proximos" title="Próximos Passos"></div>
@@ -2022,12 +2161,57 @@ section{overflow:hidden}
 </div>
 </section>
 
-<!-- ═══════════ NOTA CONVERSÍVEL ═══════════ -->
+<!-- ═══════════ A PARCERIA QUE MUDA O JOGO (PAGGO) ═══════════ -->
+<section id="paggo">
+<div class="deco" style="top:60px;right:-90px;width:240px;opacity:.10"><img src="juspilot.ai/ELEMENTO%202%20JUSPILOT.svg" alt=""/></div>
+<div class="deco" style="bottom:80px;left:-80px;width:200px;opacity:.10"><img src="juspilot.ai/ELEMENTO%204%20JUSPILOT.svg" alt=""/></div>
+<div class="inner">
+  <span class="paggo-eyebrow">Parte 6 · Contexto Estratégico</span>
+  <h2 class="paggo-headline">A Paggo não é apenas um sócio. É a <em>infraestrutura financeira</em> da Octalab.</h2>
+  <p class="paggo-deck">A Paggo é uma fintech brasileira que construiu o que os grandes bancos nunca conseguiram: um Sistema Operacional Financeiro para empresas. Conta PJ, pagamentos, recebíveis, tesouraria, cartões corporativos, conciliação e ERP contábil em uma única plataforma unificada.</p>
+
+  <div class="paggo-grid">
+
+    <div class="paggo-card">
+      <div class="paggo-card-num">01 · O QUE É A PAGGO</div>
+      <h4>Infraestrutura financeira, não banco digital genérico</h4>
+      <p>A Paggo se integra profundamente aos sistemas de gestão que as empresas já usam. Elimina processos manuais, automatiza fluxos e captura valor sobre cada transação. Já processou mais de R$ 1,5 bilhão em volume financeiro e economizou mais de 50 mil horas de trabalho manual para seus clientes.</p>
+    </div>
+
+    <div class="paggo-card">
+      <div class="paggo-card-num">02 · A ESTRATÉGIA COM A OCTALAB</div>
+      <h4>Sócia da Octalab, com receita compartilhada por transação</h4>
+      <p>O acordo vai muito além do capital. A Paggo se torna parceira financeira preferencial de todos os produtos Octalab: Juspilot, OctaBuild, OctaGym e ecosys AUTO. Em vez de cobrar juros, recebe uma fatia da receita gerada por cada transação financeira realizada dentro dos softwares. Distribuição mútua, receita compartilhada, zero custo de aquisição adicional.</p>
+    </div>
+
+    <div class="paggo-card">
+      <div class="paggo-card-num">03 · O QUE ISSO SIGNIFICA PARA O JURÍDICO</div>
+      <h4>Do software de produtividade ao sistema nervoso financeiro do escritório</h4>
+      <p>Quando a Paggo entra no Juspilot, a oferta deixa de ser um software de produtividade e passa a ser o sistema nervoso central financeiro do escritório. O advogado gerencia o caso, emite a cobrança de honorários, recebe via PIX, concilia automaticamente e controla o fluxo de caixa, tudo na mesma interface. Ferramentas fragmentadas dão lugar a finanças embarcadas.</p>
+    </div>
+
+    <div class="paggo-card data">
+      <div class="paggo-card-num">04 · O NÚMERO</div>
+      <div class="paggo-stat">+1,3 milhão</div>
+      <div class="paggo-stat-sub"><strong>de advogados ativos no Brasil.</strong> 1 advogado para cada 164 habitantes, a maior concentração do mundo. A maioria atua como PJ.</div>
+      <p>Os grandes bancos oferecem contas PJ genéricas que não conversam com a realidade do advogado: honorários fracionados, custas processuais, repasses a clientes, gestão de alvarás. Esse mercado nunca foi bancarizado de forma especializada. É um oceano azul.</p>
+    </div>
+
+  </div>
+
+  <div class="paggo-impact">
+    <p class="paggo-impact-line1">O investidor não está comprando participação em uma LegalTech.</p>
+    <p class="paggo-impact-line2">Está comprando o ponto de entrada do <strong>banco digital PJ</strong> no maior mercado jurídico do mundo.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ ESTRUTURA DO INVESTIMENTO ═══════════ -->
 <section id="nota" class="sec off">
 <div class="deco" style="top:60px;right:-90px;width:240px;opacity:.10"><img src="juspilot.ai/ELEMENTO%201%20JUSPILOT.svg" alt=""/></div>
 <div class="deco" style="bottom:80px;left:-80px;width:200px;opacity:.10"><img src="juspilot.ai/ELEMENTO%202%20JUSPILOT.svg" alt=""/></div>
 <div class="inner">
-  <span class="eyebrow">Parte 6 · Estrutura do Investimento</span>
+  <span class="eyebrow">Parte 7 · Estrutura do Investimento</span>
   <h2 class="sec-title">Participação Societária, em uma página</h2>
   <p class="sec-lead" style="margin-bottom:2.5rem">Nossa intenção é fechar via entrada direta no cap table: participação imediata, governança ativa e upside real desde o primeiro dia. Documento único, fechamento em 30 a 60 dias, custos legais reduzidos.</p>
 
@@ -2093,7 +2277,7 @@ section{overflow:hidden}
   <!-- ATO 1: cinematic dark hero -->
   <div class="oferta-cinema">
     <div class="oferta-cinema-inner">
-      <span class="oferta-eyebrow">Parte 7 · A Oferta</span>
+      <span class="oferta-eyebrow">Parte 8 · A Oferta</span>
       <h2 class="oferta-headline">Capital, rede e <em>participação</em><br/>em um único acordo.</h2>
       <p class="oferta-deck">O jurídico é mercado de relacionamento. Sócios de escritório compram de quem confiam. Por isso, a oferta combina <strong style="color:#fff">capital, rede ativa e 10% de participação direta</strong> em um acordo desenhado para alinhar incentivos desde o primeiro dia.</p>
 
@@ -2208,7 +2392,7 @@ section{overflow:hidden}
 <section id="proximos" class="sec white">
 <div class="deco" style="bottom:40px;right:-50px;width:180px;opacity:.14"><img src="juspilot.ai/ELEMENTO%203%20JUSPILOT.svg" alt=""/></div>
 <div class="inner">
-  <span class="eyebrow">Parte 8 · Próximos Passos</span>
+  <span class="eyebrow">Parte 9 · Próximos Passos</span>
   <h2 class="sec-title">Do café ao closing em 60 a 90 dias</h2>
   <p class="sec-lead" style="margin-bottom:3rem">Um processo estruturado para alinhar expectativas, validar o produto e fechar com segurança.</p>
 
@@ -2369,7 +2553,7 @@ document.querySelectorAll('.card').forEach(card=>{
 });
 
 /* ── NAV ACTIVE + DOTS ───────────────────────── */
-const sections = ['hero','quem-somos','problema','solucao','mercado','modelo','nota','oferta','proximos'];
+const sections = ['hero','quem-somos','problema','solucao','mercado','modelo','paggo','nota','oferta','proximos'];
 const dots = document.querySelectorAll('.dot');
 const navLinks = document.querySelectorAll('.nav-links a');
 
